@@ -15,3 +15,5 @@ gem "tzinfo-data", platforms: [:mswin, :mingw, :jruby]
 
 gem "therubyracer" #Less dependency
 gem "less"
+
+gem "middleman-syntax"

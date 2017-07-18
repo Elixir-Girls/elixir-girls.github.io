@@ -157,6 +157,27 @@ aside {
     }
 }
 
+
+.guide-nav-bar.navbar-default.affix .navbar-header .navbar-brand {
+  color: white;
+}
+
+.navbar-default.guide-nav-bar {
+  background-color: @theme-primary;
+
+  .nav > li > a {
+    color: white;
+
+    &:hover {
+      color: #e7e7e7;
+    }
+  }
+
+  .navbar-brand {
+    color: white;
+  }
+}
+
 // Homepage Header
 
 header {
@@ -236,64 +257,64 @@ header {
     }
 }
 
-.portfolio-box {
-    position: relative;
-    display: block;
-    max-width: 650px;
-    margin: 0 auto;
-    .portfolio-box-caption {
-        color: white;
-        opacity: 0;
-        display: block;
-        background: fade(@theme-primary, 90%);
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        .transition-all;
-        .portfolio-box-caption-content {
-            width: 100%;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            .project-category,
-            .project-name {
-                .sans-serif-font;
-                padding: 0 15px;
-            }
-            .project-category {
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 14px;
-            }
-            .project-name {
-                font-size: 18px;
-            }
-        }
-    }
-    &:hover {
-        .portfolio-box-caption {
-            opacity: 1;
-        }
-    }
-    &:focus {
-        outline: none;
-    }
-    @media (min-width: 768px) {
-        .portfolio-box-caption {
-            .portfolio-box-caption-content {
-                .project-category {
-                    font-size: 16px;
-                }
-                .project-name {
-                    font-size: 22px;
-                }
-            }
-        }
-    }
-}
+// .portfolio-box {
+//     position: relative;
+//     display: block;
+//     max-width: 650px;
+//     margin: 0 auto;
+//     .portfolio-box-caption {
+//         color: white;
+//         opacity: 0;
+//         display: block;
+//         background: fade(@theme-primary, 90%);
+//         position: absolute;
+//         bottom: 0;
+//         text-align: center;
+//         width: 100%;
+//         height: 100%;
+//         .transition-all;
+//         .portfolio-box-caption-content {
+//             width: 100%;
+//             text-align: center;
+//             position: absolute;
+//             top: 50%;
+//             transform: translateY(-50%);
+//             .project-category,
+//             .project-name {
+//                 .sans-serif-font;
+//                 padding: 0 15px;
+//             }
+//             .project-category {
+//                 text-transform: uppercase;
+//                 font-weight: 600;
+//                 font-size: 14px;
+//             }
+//             .project-name {
+//                 font-size: 18px;
+//             }
+//         }
+//     }
+//     &:hover {
+//         .portfolio-box-caption {
+//             opacity: 1;
+//         }
+//     }
+//     &:focus {
+//         outline: none;
+//     }
+//     @media (min-width: 768px) {
+//         .portfolio-box-caption {
+//             .portfolio-box-caption-content {
+//                 .project-category {
+//                     font-size: 16px;
+//                 }
+//                 .project-name {
+//                     font-size: 22px;
+//                 }
+//             }
+//         }
+//     }
+// }
 
 .call-to-action {
     h2 {
@@ -369,4 +390,157 @@ body {
   display: block;
   margin: auto;
   width: 60%;
+}
+
+// --Sidebar
+
+.sidebar {
+
+    .sidebar-nav.navbar-collapse {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+.sidebar .sidebar-search {
+    padding: 15px;
+}
+@media (min-width: 768px){
+  .navbar-default .nav > li > a, {
+    color: rgb(34, 34, 34);
+  }
+}
+
+
+.sidebar ul li {
+    border-bottom: 1px solid darken(@gray-lightest, 6.5%);
+    a {
+
+        &.active {
+            background-color: @gray-lighter;
+        }
+    }
+}
+
+.sidebar .arrow {
+    float: right;
+}
+
+.sidebar .fa.arrow:before {
+    content: "\f104";
+}
+
+.sidebar .active > a > .fa.arrow:before {
+    content: "\f107";
+}
+
+.sidebar .nav-second-level li,
+.sidebar .nav-third-level li {
+    border-bottom: none !important;
+}
+
+.sidebar .nav-second-level li a {
+    padding-left: 37px;
+}
+
+.sidebar .nav-third-level li a {
+    padding-left: 52px;
+}
+
+@media(min-width:768px) {
+    .sidebar {
+        z-index: 1;
+        position: fixed;
+        width: 250px;
+        margin-top: 51px;
+    }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
+
+// Wrappers
+
+#wrapper {
+    width: 100%;
+}
+
+#page-wrapper {
+    padding: 0 15px;
+    min-height: 568px;
+    background-color: white;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        position: inherit;
+        margin: 0 0 0 250px;
+        padding: 0 30px;
+        border-left: 1px solid darken(@gray-lightest, 6.5%);
+    }
+}
+
+// Navigation
+
+// --Topbar
+
+.navbar-top-links {
+    margin-right: 0;
+}
+
+.navbar-top-links li {
+    display: inline-block;
+}
+
+.navbar-top-links li:last-child {
+    margin-right: 15px;
+}
+
+.navbar-top-links li a {
+    padding: 15px;
+    min-height: 50px;
+}
+
+.navbar-top-links .dropdown-menu li {
+    display: block;
+}
+
+.navbar-top-links .dropdown-menu li:last-child {
+    margin-right: 0;
+}
+
+.navbar-top-links .dropdown-menu li a {
+    padding: 3px 20px;
+    min-height: 0;
+}
+
+.navbar-top-links .dropdown-menu li a div {
+    white-space: normal;
+}
+
+.navbar-top-links .dropdown-messages,
+.navbar-top-links .dropdown-tasks,
+.navbar-top-links .dropdown-alerts {
+    width: 310px;
+    min-width: 0;
+}
+
+.navbar-top-links .dropdown-messages {
+    margin-left: 5px;
+}
+
+.navbar-top-links .dropdown-tasks {
+    margin-left: -59px;
+}
+
+.navbar-top-links .dropdown-alerts {
+    margin-left: -123px;
+}
+
+.navbar-top-links .dropdown-user {
+    right: 0;
+    left: auto;
 }
