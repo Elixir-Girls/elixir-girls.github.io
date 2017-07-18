@@ -103,19 +103,8 @@ title: Elixir Girls Guides Installing on Windows
             <p>Click on the following link to dowload the Postgre installer</p>
             <a href="http://www.enterprisedb.com/products-services-training/pgdownload#windows">http://www.enterprisedb.com/products-services-training/pgdownload#windows</a>
 
-            <p>If this is your first time instaling Postgress than you will need to create a database. Run the following command in your terminal</p>
-            <% code("bash") do :preserve %>
-              initdb /usr/local/var/postgres -E utf8
-            <% end %>
-            <p>Now you will need to create a user for your Database</p>
-            <% code("bash") do :preserve %>
-              createuser -s postgres
-            <% end %>
-            <% code("bash") do :preserve %>
-              launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            <% end %>
-
-
+            <p>If this is your first time instaling Postgress than you will need to create a database.</p>
+            
         </div>
         <!-- /#page-wrapper -->
 
