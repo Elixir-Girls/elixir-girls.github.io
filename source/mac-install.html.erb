@@ -51,7 +51,7 @@ title: Elixir Girls Guides Installing on Mac OSX
             <% end %>
             <p>You may be propted for your user's password</p>
 
-            <h2>Step 3- Install Postgres</h2>
+            <h2>Step 3 - Install Postgres</h2>
             <p>Postgres is the type of database that we will use for our application to install do the following</p>
             <% code("bash") do :preserve %>
               initdb /usr/local/var/postgres -E utf8
@@ -62,8 +62,27 @@ title: Elixir Girls Guides Installing on Mac OSX
             <% end %>
             <% code("bash") do :preserve %>
               launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+            <% end %>brew install erlang elixir
+
+            <h2>Step 4 - Install Elixir</h2>
+            <% code("bash") do :preserve %>
+              brew install erlang elixir
             <% end %>
 
+            <h2>Step 5 - Install Node</h2>
+            <% code("bash") do :preserve %>
+              brew install node
+            <% end %>
+
+            <h2>Step 6 - Install Phoenix</h2>
+            <p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
+            <% code("bash") do :preserve %>
+              mix local.hex
+            <% end %>mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+            <p>Now that we have Hex installed we can install Phoenix</p>
+              <% code("bash") do :preserve %>
+                mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+              <% end %>
 
         </div>
         <!-- /#page-wrapper -->
