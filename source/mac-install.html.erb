@@ -15,73 +15,74 @@ title: Elixir Girls Guides Installing on Mac OSX
 
             <h2>Step 1- Install Xcode Command Line tools</h2>
             <p>Open up Iterm or your preferance of terminal applications. Enter the following command to see if you already have xcode installed</p>
+
             <% code("bash") do %>
-              gcc --version
+gcc --version
             <% end %>
+
             <p>If you see a similar output to below then you already have xcode installed and you can move on to the next step.</p>
-            <% code("bash") do :preserve %>
-              Catherines-MacBook-Pro:~ BitGirl$ gcc --version
-              Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
-              Apple LLVM version 8.1.0 (clang-802.0.42)
-              Target: x86_64-apple-darwin16.6.0
-              Thread model: posix
-              InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-              Catherines-MacBook-Pro:~ BitGirl$
+            <% code("bash") do %>
+Catherines-MacBook-Pro:~ BitGirl$ gcc --version
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
+Apple LLVM version 8.1.0 (clang-802.0.42)
+Target: x86_64-apple-darwin16.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
             <% end %>
 
             <p>To install xcode run the following command</p>
             <% code("bash") do %>
-              xcode-select --install
+xcode-select --install
             <% end %>
 
             <p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
 
             <h2>Step 2- Install Homebrew</h2>
-            <p></p>
-            <% code("bash") do :preserve %>
-              brew -v
+            <p>To check if you have Homebrew installed run</p>
+            <% code("bash") do %>
+brew -v
             <% end %>
             <p>If that command returnd a version number then you already have Homebrew installed you may want to run the following to get the latest version</p>
-            <% code("bash") do :preserve %>
-              brew update
+            <% code("bash") do %>
+brew update
             <% end %>
             <p>If that command returnd an error the you will need to install Homebrew by running</p>
-            <% code("bash") do :preserve %>
-              ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+            <% code("bash") do %>
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
             <% end %>
             <p>You may be propted for your user's password</p>
 
             <h2>Step 3 - Install Postgres</h2>
             <p>Postgres is the type of database that we will use for our application to install do the following</p>
-            <% code("bash") do :preserve %>
-              initdb /usr/local/var/postgres -E utf8
+            <% code("bash") do %>
+initdb /usr/local/var/postgres -E utf8
             <% end %>
             <p>Now you will need to create a user for your Database</p>
-            <% code("bash") do :preserve %>
-              createuser -s postgres
+            <% code("bash") do %>
+createuser -s postgres
             <% end %>
-            <% code("bash") do :preserve %>
-              launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
-            <% end %>brew install erlang elixir
+            <% code("bash") do %>
+launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+            <% end %>
 
             <h2>Step 4 - Install Elixir</h2>
-            <% code("bash") do :preserve %>
-              brew install erlang elixir
+            <% code("bash") do %>
+brew install erlang elixir
             <% end %>
 
             <h2>Step 5 - Install Node</h2>
-            <% code("bash") do :preserve %>
-              brew install node
+            <% code("bash") do %>
+brew install node
             <% end %>
 
             <h2>Step 6 - Install Phoenix</h2>
             <p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
-            <% code("bash") do :preserve %>
-              mix local.hex
-            <% end %>mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+            <% code("bash") do %>
+mix local.hex
+            <% end %>
             <p>Now that we have Hex installed we can install Phoenix</p>
-              <% code("bash") do :preserve %>
-                mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+              <% code("bash") do %>
+mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
               <% end %>
 
         </div>
