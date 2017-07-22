@@ -361,6 +361,18 @@ body {
         }
     }
 }
+.navbar-default {
+    @media (min-width: 768px) {
+        .nav#side-menu > li > a,
+        .nav#side-menu > li > a:focus {
+            color: @gray-darker;
+            &:hover {
+                color: @theme-primary;
+            }
+        }
+    }
+}
+
 
 .sidebar .arrow {
     float: right;
