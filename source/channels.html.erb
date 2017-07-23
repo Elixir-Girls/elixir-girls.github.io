@@ -60,10 +60,74 @@ end
 
             <p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us is elixirgirls allows clients, also know as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request the right controller, the topic directs the socket to the right module, in this case, Slacikir.RandomChannel.</p>
 
-            <p></p>
+            <p>Now, let’s look at the join method def join ("random:lobby", payload, socket) do: it takes three arguments. The name of the channel, "random:lobby", is so that this method is only called when the client is joining that specific channel. The second argument, payload is the request from the user; it can contain auth credentials, a message, anything the user wants. Finally, it takes socket, which is the websocket connection. There’s a test, authorized?, which always returns true. Then, {:ok, socket} just returns a status and the websocket they are connecting to. join always returns {:ok, socket} to allow all connections to the channel.</p>
 
-            <% code("bash") do %>
+            <p>Once a user joins to a channel, then they can send messages to the channel and they’ll be received by one of the handle_in messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s this one that allows us to build out chat room with a little front end work. When you send a message to the chatroom, this method sends it back to you and to everyone else in the channel.</p>
 
+            <p>To handl the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
+
+            <% code("js") do %>
+
+            <% end %>
+
+            <p>Phoenix comes packed with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
+
+            <% code("js") do %>
+import socket from "./socket"
+            <% end %>
+
+            <p>Go into your web/static/js/socket.js and paste in this:</p>
+
+            <% code("js") do %>
+let channel = socket.channel("elixirbridge", {});
+let list    = $('#message-list');
+let message = $('#message');
+let name    = $('#name');
+
+message.on('keypress', event => {
+  if (event.keyCode == 13) {
+    channel.push('shout', { name: name.val(), message: message.val() });
+    message.val('');
+  }
+});
+
+channel.on('shout', payload => {
+  list.append(`<b>${payload.name || 'Anonymous'}:</b> ${payload.message}<br>`);
+  list.prop({scrollTop: list.prop("scrollHeight")});
+});
+
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+            <% end %>
+
+            <p>socket.channel("elixirgirls", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
+
+            <p>Nexk we will want to create th Open web/templates/page/index.html.eex, and replace its contents with:</p>
+
+            <% code("html") do %>
+<div id='message-list' class='row'>
+</div>
+
+<div class='row form-group'>
+  <div class='col-md-3'>
+    <input type='text' id='name' class='form-control' placeholder='Name' />
+  </div>
+  <div class='col-md-9'>
+    <input type='text' id='message' class='form-control' placeholder='Message' />
+  </div>
+</div>
+            <% end %>
+            <p>What we have done here is create an empty div that will list all the chat messages and added two text fields,one for the user’s name and one for the message. Now you will want to open web/static/css/app.css and paste this at the end:</p>
+
+            <% code("css") do %>
+#message-list {
+  border: 1px solid #777;
+  height: 400px;
+  padding: 10px;
+  overflow: scroll;
+  margin-bottom: 50px;
+}
             <% end %>
 
         </div>
