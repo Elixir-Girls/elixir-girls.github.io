@@ -11,7 +11,7 @@ title: Elixir Girls Guides Slackir App
 
         <div id="page-wrapper">
           <h1>Slackir</h1>
-            <p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir, it's like Slack but in Elixir. You will see different types of code snippests through out these docs if they beign with a $ then they are terminal commands, you do not need to copy the $ into the terminal.</p>
+            <p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir, it's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippests through out these docs if they beign with a $ then they are terminal commands, you do not need to copy the $ into the terminal.</p>
 
             <h2>Setting up Our App</h2>
             <p>The first thing that we want to do is to create our Phoenix app we do this with the following command and we pass in slackir as the name of our app.</p>
@@ -19,7 +19,32 @@ title: Elixir Girls Guides Slackir App
             <% code("bash") do %>
 $ mix phoenix.new slackir
             <% end %>
-            
+
+            <p>The next thing we want to do is move into our newly created application to do that we run</p>
+
+            <% code("bash") do %>
+$ cd slackir
+            <% end %>
+
+            <p>Now we can install our applications dependencies by running</p>
+
+            <% code("bash") do %>
+$ npm install
+            <% end %>
+
+            <p>and we can create our database by running</p>
+
+            <% code("bash") do %>
+$ mix ecto.create
+            <% end %>
+
+            <p>To start the server you will need to run</p>
+
+            <% code("bash") do %>
+$ mix phoenix.server
+            <% end %>
+
+            <p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application</p>
 
 
 
