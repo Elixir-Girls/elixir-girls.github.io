@@ -1,0 +1,89 @@
+---
+title: Elixir Girls Guides Channels
+---
+
+<%= partial "partials/guides-nav" %>
+
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <%= partial "partials/guides-sidebar-nav" %>
+
+        <div id="page-wrapper">
+          <h1>Channels</h1>
+            <p>Now that you have your app up and running we can start adding functionality. The first thing out chat app needs to be able to do is communicate in Phoneix his is done via a Channel which uses websockets. Websockets create connections similar to pipes or land line telephones being that they are alway open or avalible. The other forms of communication that are used on the web are more like mail a message is sent, the message is recived, then a reply is sent and example of this would be HTTP.</p>
+
+            <h2>Setting up Our Channels</h2>
+            <p>Since Phoenix 1.2, there’s a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command so we will follow the Slack theme and call it random. Look out for any actions that running the command asks you to complete.</p>
+
+            <% code("bash") do %>
+$ mix phoenix.gen.channel random
+            <% end %>
+
+            <p>In our web/channels/random_channel.ex paste the following</p>
+
+            <% code("elixir") do %>
+defmodule Slackir.RandomChannel do
+  use Slackir.Web, :channel
+
+  def join("random:lobby", payload, socket) do
+    if authorized?(payload) do
+      {:ok, socket}
+    else
+      {:error, %{reason: "unauthorized"}}
+    end
+  end
+
+  # Channels can be used in a request/response fashion
+  # by sending replies to requests from the client
+  def handle_in("ping", payload, socket) do
+    {:reply, {:ok, payload}, socket}
+  end
+
+  # It is also common to receive messages from the client and
+  # broadcast to everyone in the current topic (random:lobby).
+  def handle_in("shout", payload, socket) do
+    broadcast socket, "shout", payload
+    {:noreply, socket}
+  end
+
+  # Add authorization logic here as required.
+  defp authorized?(_payload) do
+    true
+  end
+end
+            <% end %>
+
+            <p>Now that we have generated some code let's look at what it does. First the random_channel.ex is the channel equivlilent of a controller in Phoenix, being that it handels websocket requests instead of http requests. On line 2 :channel is refering to the Phoenix channel method. It takes a perameter which is used as a namespace for the websocket connections. In this instance the name space is "random:lobby".</p>
+
+            <p>The next argument Slackir.RandomChannel is made up of two parts. The first part Slackir is the name of the app. The second part RandomChannel is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
+
+            <p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us is elixirgirls allows clients, also know as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request the right controller, the topic directs the socket to the right module, in this case, Slacikr.RandomChannel.</p>
+
+            <p></p>
+
+            <% code("bash") do %>
+
+            <% end %>
+
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="javascripts/creative.js"></script>
+<script src="javascripts/sidebar.js"></script>
