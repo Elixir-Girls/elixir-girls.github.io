@@ -31,6 +31,8 @@ else
     git checkout --orphan gh-pages
 fi
 
+bundle exec middleman build
+
 # stage any changes and new files
 git add -A
 # now commit, ignoring branch gh-pages doesn't seem to work, so trying skip
