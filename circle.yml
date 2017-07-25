@@ -23,6 +23,8 @@ jobs:
         paths:
           - vendor/bundle
 
+      # Buld static files
+      - run: bundle exec middleman build
       - deploy:
           name: Maybe Deploy
           command: |
