@@ -1,0 +1,24 @@
+machine:
+  ruby:
+    version: 2.3.1
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+
+dependencies:
+  pre:
+    - bundle check || bundle install
+  override:
+    - bundle exec middleman build
+
+test:
+  override:
+    - exit 0
+
+deployment:
+  staging:
+    branch: master
+    commands:
+      - ./scripts/deploy-ghpages.sh build
