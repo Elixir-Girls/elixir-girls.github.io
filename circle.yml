@@ -1,24 +1,33 @@
-machine:
-  ruby:
-    version: 2.3.1
+version: 2
+jobs:
+  build:
+    working_directory: /usr/elixir-girls
+    docker:
+      - image: circleci/ruby:2.3
+    branches:
+      ignore:
+        - gh-pages
+    steps:
+      - checkout
 
-general:
-  branches:
-    ignore:
-      - gh-pages
+      # Restore bundle cache
+      - type: cache-restore
+        key: elixir-girls-{{ checksum "Gemfile.lock" }}
 
-dependencies:
-  pre:
-    - bundle check || bundle install
-  override:
-    - bundle exec middleman build
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
 
-test:
-  override:
-    - exit 0
+      # Store bundle cache
+      - type: cache-save
+        key: elixir-girls-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
 
-deployment:
-  staging:
-    branch: master
-    commands:
-      - ./scripts/deploy-ghpages.sh build
+      # Database setup
+      - run: bundle exec middleman build
+      - deploy:
+          name: Maybe Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              ./scripts/deploy-ghpages.sh
+            fi
