@@ -1,7 +1,7 @@
 version: 2
 jobs:
   build:
-    working_directory: /usr/elixir-girls
+    working_directory: ~/elixir-girls
     docker:
       - image: circleci/ruby:2.3
     branches:
@@ -23,7 +23,7 @@ jobs:
         paths:
           - vendor/bundle
 
-      # Database setup
+      # Buld static files
       - run: bundle exec middleman build
       - deploy:
           name: Maybe Deploy
