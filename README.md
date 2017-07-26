@@ -1,1 +1,0 @@
-# elixir-girls-web

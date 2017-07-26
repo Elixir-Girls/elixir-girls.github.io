@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Elixir Girls Guides Installing on Linux</title>
+
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elixir Girls website">
+    <meta name="author" content="Cath Jones">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Elixir Girls" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="http://elixirgirls.com" />
+    <meta property="og:image" content="http://elixirgirls.com/img/header.jpg" />
+    <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/highlighting.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  <body class="linux-install">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/#page-top">Elixir Girls</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#events">Events</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/guides.html">Guides</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Elixir Girls Guides</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="mac-install.html">Mac</a>
+                </li>
+                <li>
+                    <a href="windows-install.html">Windows</a>
+                </li>
+                <li>
+                    <a href="linux-install.html">Linux</a>
+                </li>
+                <li>
+                    <a href="git-install.html">Install Git</a>
+                </li>
+                <li>
+                    <a href="dev-tools.html">Aditional Tools</a>
+                </li>
+                <li>
+                    <a href="slackir.html">Slackir App</a>
+                </li>
+                <li>
+                    <a href="channels.html">Channels</a>
+                </li>
+                <li>
+                    <a href="persistence.html">Persistence</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+
+        <div id="page-wrapper">
+          <h1>Installing Elixir on Linux</h1>
+          <p>
+            In order to develop elixir applications, you will need to install elixir itself, erlang because elixir is made for the erlang virtual machine, nodejs for compiling assets in phoenix, and you'll most likely want a RDBMS (relational database management system) such as postgresql or MySQL. These can of course be installed by your distribution's package manager - in fact, there are official instructions for doing so for various distributions <a class="inline-link" href="https://elixir-lang.org/install.html#unix-and-unix-like">here</a>.
+          </p>
+          <p>
+            You may, however, find yourself developing projects under different versions of elixir, erlang, and possibly even your RDBMS. For such situations, it's useful to use a version manager (those from a ruby background may be familiar with chruby, rbenv, or rvm). This software allows you to install multiple versions of your tools, and swith between them (mostly) automatically, using a file that specifies the version in each project.
+          </p>
+
+          <h2>The ASDF Version Manager</h2>
+          <p>
+            The <a class="inline-link" href="https://github.com/asdf-vm/asdf">asdf version manager</a> allows version managerment of multiple different tools using a plugin system. Let's install asdf, then use it to install elixir, erlang, nodejs, and postgresql.
+          </p>
+          <p>
+            The README on the asdf page has excellent instructions (in fact the below are practically copied from there with modifications for our specific use case); if your environment is different from the standard - for example if you're using a shell other than bash - I'd recommend referring to them.
+          </p>
+
+          <h3>Install build tools and libraries</h3>
+          <p>Many plugins will need tools to compile them, and libaries to link to. These need to be installed using your distribution's package manager:
+          <div>
+          deb based pacakage managers (Debian/Ubuntu/Linux Mint/ElementaryOS):
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>apt-get install automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev
+</code></pre></div>          rpm based package managers (Fedora/Red Hat/Scientific):
+<div class="highlight"><pre class="highlight shell"><code><span class="nb">sudo </span>yum install automake autoconf readline-devel ncurses-devel openssl-devel libyaml-devel libxslt-devel libffi-devel libtool unixODBC-devel
+</code></pre></div>          </div>
+          Other distributions may use different package names and package managers; a search for each of the names given should return your distro's equivalent.
+          </p>
+
+          <h3>Install asdf</h3>
+          <p>
+<div class="highlight"><pre class="highlight shell"><code>git clone https://github.com/asdf-vm/asdf.git ~/.asdf
+
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s1">'\n. $HOME/.asdf/asdf.sh'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">echo</span> <span class="nt">-e</span> <span class="s1">'\n. $HOME/.asdf/completions/asdf.bash'</span> <span class="o">&gt;&gt;</span> ~/.bashrc
+<span class="nb">source</span> ~/.bashrc
+</code></pre></div>          </p>
+
+          <h3>Install all the plugins</h3>
+          <p>
+            If you have any trouble running these, start a new shell.
+<div class="highlight"><pre class="highlight shell"><code>asdf plugin-add erlang https://github.com/asdf-vm/asdf-erlang.git
+asdf plugin-add elixir https://github.com/asdf-vm/asdf-elixir.git
+asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs.git
+bash ~/.asdf/plugins/nodejs/bin/import-release-team-keyring
+asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
+</code></pre></div>          </p>
+
+          <h3>Install the version of tools we want</h3>
+          <p>
+<div class="highlight"><pre class="highlight shell"><code>asdf install erlang 19.3
+asdf install elixir 1.4.5
+asdf install nodejs 8.2.1
+asdf install postgres 9.6.3
+</code></pre></div>          </p>
+
+          <h3>Set these versions as your defaults</h3>
+          <p>
+<div class="highlight"><pre class="highlight shell"><code>asdf global erlang 19.3
+asdf global elixir 1.4.5
+asdf global nodejs 8.2.1
+asdf global postgres 9.6.3
+</code></pre></div>
+            Once you have a project to work on, you can add specific versions to a file called <code>.tool-versions</code> which asdf uses to choose which version to use when you switch into the project directory by replacing <code>global</code> in the above snippet with <code>local</code>.
+          </p>
+
+          <h3>Start postgres</h3>
+          <p>
+<div class="highlight"><pre class="highlight shell"><code>pg_ctl start
+</code></pre></div>          </p>
+
+          <h2>Install Phoenix</h2>
+          <p>
+            Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.
+          </p>
+<div class="highlight"><pre class="highlight shell"><code>  mix local.hex
+</code></pre></div>          <p>
+            Now that we have Hex installed we can install Phoenix
+          </p>
+<div class="highlight"><pre class="highlight shell"><code>  mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+</code></pre></div>
+          And we're good to go! Let's go write some elixir!
+        </div>
+        <!-- /#page-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="javascripts/creative.js"></script>
+<script src="javascripts/sidebar.js"></script>
+
+  </body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Elixir Girls Guides Installing on Mac OSX</title>
+
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elixir Girls website">
+    <meta name="author" content="Cath Jones">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Elixir Girls" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="http://elixirgirls.com" />
+    <meta property="og:image" content="http://elixirgirls.com/img/header.jpg" />
+    <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/highlighting.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  <body class="mac-install">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/#page-top">Elixir Girls</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#events">Events</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/guides.html">Guides</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Elixir Girls Guides</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="mac-install.html">Mac</a>
+                </li>
+                <li>
+                    <a href="windows-install.html">Windows</a>
+                </li>
+                <li>
+                    <a href="linux-install.html">Linux</a>
+                </li>
+                <li>
+                    <a href="git-install.html">Install Git</a>
+                </li>
+                <li>
+                    <a href="dev-tools.html">Aditional Tools</a>
+                </li>
+                <li>
+                    <a href="slackir.html">Slackir App</a>
+                </li>
+                <li>
+                    <a href="channels.html">Channels</a>
+                </li>
+                <li>
+                    <a href="persistence.html">Persistence</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+
+        <div id="page-wrapper">
+            <h1>Mac OSX setup</h1>
+            <p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatiable version of OSX. To do this click on the Apple icon in the top left of your screen and select “About This Mac”. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are ok to proceed to the next step if not you will need to upgrade. </p>
+
+            <h2>Step 1- Install Xcode Command Line tools</h2>
+            <p>Open up Iterm or your preferance of terminal applications. Enter the following command to see if you already have xcode installed</p>
+
+<div class="highlight"><pre class="highlight shell"><code>gcc <span class="nt">--version</span>
+</code></pre></div>
+            <p>If you see a similar output to below then you already have xcode installed and you can move on to the next step.</p>
+<div class="highlight"><pre class="highlight shell"><code>Catherines-MacBook-Pro:~ BitGirl<span class="nv">$ </span>gcc <span class="nt">--version</span>
+Configured with: <span class="nt">--prefix</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/usr <span class="nt">--with-gxx-include-dir</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
+Apple LLVM version 8.1.0 <span class="o">(</span>clang-802.0.42<span class="o">)</span>
+Target: x86_64-apple-darwin16.6.0
+Thread model: posix
+InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+</code></pre></div>
+            <p>To install xcode run the following command</p>
+<div class="highlight"><pre class="highlight shell"><code>xcode-select <span class="nt">--install</span>
+</code></pre></div>
+            <p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
+
+            <h2>Step 2- Install Homebrew</h2>
+            <p>To check if you have Homebrew installed run</p>
+<div class="highlight"><pre class="highlight shell"><code>brew <span class="nt">-v</span>
+</code></pre></div>            <p>If that command returnd a version number then you already have Homebrew installed you may want to run the following to get the latest version</p>
+<div class="highlight"><pre class="highlight shell"><code>brew update
+</code></pre></div>            <p>If that command returnd an error the you will need to install Homebrew by running</p>
+<div class="highlight"><pre class="highlight shell"><code>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
+</code></pre></div>            <p>You may be propted for your user's password</p>
+
+            <h2>Step 3 - Install Postgres</h2>
+            <p>Postgres is the type of database that we will use for our application to install do the following</p>
+<div class="highlight"><pre class="highlight shell"><code>initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
+</code></pre></div>            <p>Now you will need to create a user for your Database</p>
+<div class="highlight"><pre class="highlight shell"><code>createuser <span class="nt">-s</span> postgres
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code>launchctl load <span class="nt">-w</span> ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+</code></pre></div>
+            <h2>Step 4 - Install Elixir</h2>
+<div class="highlight"><pre class="highlight shell"><code>brew install erlang elixir
+</code></pre></div>
+            <h2>Step 5 - Install Node</h2>
+<div class="highlight"><pre class="highlight shell"><code>brew install node
+</code></pre></div>
+            <h2>Step 6 - Install Phoenix</h2>
+            <p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
+<div class="highlight"><pre class="highlight shell"><code>mix local.hex
+</code></pre></div>            <p>Now that we have Hex installed we can install Phoenix</p>
+<div class="highlight"><pre class="highlight shell"><code>mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
+</code></pre></div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="javascripts/creative.js"></script>
+<script src="javascripts/sidebar.js"></script>
+
+  </body>
+</html>

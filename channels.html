@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Elixir Girls Guides Channels</title>
+
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elixir Girls website">
+    <meta name="author" content="Cath Jones">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Elixir Girls" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="http://elixirgirls.com" />
+    <meta property="og:image" content="http://elixirgirls.com/img/header.jpg" />
+    <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/highlighting.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  <body class="channels">
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/#page-top">Elixir Girls</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#events">Events</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/guides.html">Guides</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+
+<div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Elixir Girls Guides</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="mac-install.html">Mac</a>
+                </li>
+                <li>
+                    <a href="windows-install.html">Windows</a>
+                </li>
+                <li>
+                    <a href="linux-install.html">Linux</a>
+                </li>
+                <li>
+                    <a href="git-install.html">Install Git</a>
+                </li>
+                <li>
+                    <a href="dev-tools.html">Aditional Tools</a>
+                </li>
+                <li>
+                    <a href="slackir.html">Slackir App</a>
+                </li>
+                <li>
+                    <a href="channels.html">Channels</a>
+                </li>
+                <li>
+                    <a href="persistence.html">Persistence</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+
+        <div id="page-wrapper">
+          <h1>Channels</h1>
+            <p>Now that you have your app up and running we can start adding functionality. The first thing out chat app needs to be able to do is communicate in Phoneix his is done via a Channel which uses websockets. Websockets create connections similar to pipes or land line telephones being that they are alway open or avalible. The other forms of communication that are used on the web are more like mail a message is sent, the message is recived, then a reply is sent and example of this would be HTTP.</p>
+
+            <h2>Setting up Our Channels</h2>
+            <p>Since Phoenix 1.2, there’s a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command so we will follow the Slack theme and call it random. Look out for any actions that running the command asks you to complete.</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.channel random
+</code></pre></div>
+            <p>In our web/channels/random_channel.ex paste the following</p>
+
+<div class="highlight"><pre class="highlight elixir"><code><span class="k">defmodule</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span> <span class="k">do</span>
+  <span class="kn">use</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:channel</span>
+
+  <span class="k">def</span> <span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">authorized?</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="k">do</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
+    <span class="k">else</span>
+      <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="p">%{</span><span class="ss">reason:</span> <span class="sd">"</span><span class="s2">unauthorized"</span><span class="p">}}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Channels can be used in a request/response fashion</span>
+  <span class="c1"># by sending replies to requests from the client</span>
+  <span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">ping"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">{</span><span class="ss">:reply</span><span class="p">,</span> <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">payload</span><span class="p">},</span> <span class="n">socket</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="c1"># It is also common to receive messages from the client and</span>
+  <span class="c1"># broadcast to everyone in the current topic (random:lobby).</span>
+  <span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">broadcast</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span>
+    <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="c1"># Add authorization logic here as required.</span>
+  <span class="k">defp</span> <span class="n">authorized?</span><span class="p">(</span><span class="n">_payload</span><span class="p">)</span> <span class="k">do</span>
+    <span class="no">true</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div>
+            <p>Now that we have generated some code let's look at what it does. First the random_channel.ex is the channel equivlilent of a controller in Phoenix, being that it handels websocket requests instead of http requests. On line 2 :channel is refering to the Phoenix channel method. It takes a perameter which is used as a namespace for the websocket connections. In this instance the name space is "random:lobby".</p>
+
+            <p>The next argument Slackir.RandomChannel is made up of two parts. The first part Slackir is the name of the app. The second part RandomChannel is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
+
+            <p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us is elixirgirls allows clients, also know as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request the right controller, the topic directs the socket to the right module, in this case, Slacikir.RandomChannel.</p>
+
+            <p>Now, let’s look at the join method def join ("random:lobby", payload, socket) do: it takes three arguments. The name of the channel, "random:lobby", is so that this method is only called when the client is joining that specific channel. The second argument, payload is the request from the user; it can contain auth credentials, a message, anything the user wants. Finally, it takes socket, which is the websocket connection. There’s a test, authorized?, which always returns true. Then, {:ok, socket} just returns a status and the websocket they are connecting to. join always returns {:ok, socket} to allow all connections to the channel.</p>
+
+            <p>Once a user joins to a channel, then they can send messages to the channel and they’ll be received by one of the handle_in messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s this one that allows us to build out chat room with a little front end work. When you send a message to the chatroom, this method sends it back to you and to everyone else in the channel.</p>
+
+            <p>To handl the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
+
+<div class="highlight"><pre class="highlight javascript"><code>
+</code></pre></div>
+            <p>Phoenix comes packed with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="k">import</span> <span class="nx">socket</span> <span class="k">from</span> <span class="s2">"./socket"</span>
+</code></pre></div>
+            <p>Go into your web/static/js/socket.js and paste in this:</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s2">"elixirbridge"</span><span class="p">,</span> <span class="p">{});</span>
+<span class="kd">let</span> <span class="nx">list</span>    <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#message-list'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#message'</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">name</span>    <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#name'</span><span class="p">);</span>
+
+<span class="nx">message</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'keypress'</span><span class="p">,</span> <span class="nx">event</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">keyCode</span> <span class="o">==</span> <span class="mi">13</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">channel</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s1">'shout'</span><span class="p">,</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="nx">name</span><span class="p">.</span><span class="nx">val</span><span class="p">(),</span> <span class="na">message</span><span class="p">:</span> <span class="nx">message</span><span class="p">.</span><span class="nx">val</span><span class="p">()</span> <span class="p">});</span>
+    <span class="nx">message</span><span class="p">.</span><span class="nx">val</span><span class="p">(</span><span class="s1">''</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">});</span>
+
+<span class="nx">channel</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'shout'</span><span class="p">,</span> <span class="nx">payload</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="nx">list</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">`&lt;b&gt;</span><span class="p">${</span><span class="nx">payload</span><span class="p">.</span><span class="nx">name</span> <span class="o">||</span> <span class="s1">'Anonymous'</span><span class="p">}</span><span class="s2">:&lt;/b&gt; </span><span class="p">${</span><span class="nx">payload</span><span class="p">.</span><span class="nx">message</span><span class="p">}</span><span class="s2">&lt;br&gt;`</span><span class="p">);</span>
+  <span class="nx">list</span><span class="p">.</span><span class="nx">prop</span><span class="p">({</span><span class="na">scrollTop</span><span class="p">:</span> <span class="nx">list</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"scrollHeight"</span><span class="p">)});</span>
+<span class="p">});</span>
+
+<span class="nx">channel</span><span class="p">.</span><span class="nx">join</span><span class="p">()</span>
+  <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"ok"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Joined successfully"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
+  <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"error"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Unable to join"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
+</code></pre></div>
+            <p>socket.channel("elixirgirls", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
+
+            <p>Nexk we will want to create th Open web/templates/page/index.html.eex, and replace its contents with:</p>
+
+<div class="highlight"><pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">'message-list'</span> <span class="na">class=</span><span class="s">'row'</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+
+<span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'row form-group'</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'col-md-3'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">'text'</span> <span class="na">id=</span><span class="s">'name'</span> <span class="na">class=</span><span class="s">'form-control'</span> <span class="na">placeholder=</span><span class="s">'Name'</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">'col-md-9'</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">'text'</span> <span class="na">id=</span><span class="s">'message'</span> <span class="na">class=</span><span class="s">'form-control'</span> <span class="na">placeholder=</span><span class="s">'Message'</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre></div>            <p>What we have done here is create an empty div that will list all the chat messages and added two text fields,one for the user’s name and one for the message. Now you will want to open web/static/css/app.css and paste this at the end:</p>
+
+<div class="highlight"><pre class="highlight css"><code><span class="nf">#message-list</span> <span class="p">{</span>
+  <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#777</span><span class="p">;</span>
+  <span class="nl">height</span><span class="p">:</span> <span class="m">400px</span><span class="p">;</span>
+  <span class="nl">padding</span><span class="p">:</span> <span class="m">10px</span><span class="p">;</span>
+  <span class="nl">overflow</span><span class="p">:</span> <span class="nb">scroll</span><span class="p">;</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+        </div>
+        <!-- /#page-wrapper -->
+
+    </div>
+    <!-- /#wrapper -->
+
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="javascripts/creative.js"></script>
+<script src="javascripts/sidebar.js"></script>
+
+  </body>
+</html>
