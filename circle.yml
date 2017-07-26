@@ -28,6 +28,6 @@ jobs:
       - deploy:
           name: Maybe Deploy
           command: |
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            if [ "${CIRCLE_BRANCH}" == "develop" ]; then
               ./scripts/deploy-ghpages.sh
             fi
