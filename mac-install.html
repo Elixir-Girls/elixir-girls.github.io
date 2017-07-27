@@ -118,7 +118,7 @@
                     <a href="git-install.html">Install Git</a>
                 </li>
                 <li>
-                    <a href="dev-tools.html">Aditional Tools</a>
+                    <a href="dev-tools.html">Additional Tools</a>
                 </li>
                 <li>
                     <a href="slackir.html">Slackir App</a>
@@ -139,14 +139,14 @@
 
         <div id="page-wrapper">
             <h1>Mac OSX setup</h1>
-            <p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatiable version of OSX. To do this click on the Apple icon in the top left of your screen and select “About This Mac”. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are ok to proceed to the next step if not you will need to upgrade. </p>
+            <p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatible version of OSX. Click on the Apple icon in the top left of your screen and select “About This Mac” to check. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are all set to proceed to the next step if not you will need to upgrade.</p>
 
             <h2>Step 1- Install Xcode Command Line tools</h2>
-            <p>Open up Iterm or your preferance of terminal applications. Enter the following command to see if you already have xcode installed</p>
+            <p>Open Iterm or your terminal application of choice. Enter the following command to check if you already have xcode installed</p>
 
 <div class="highlight"><pre class="highlight shell"><code>gcc <span class="nt">--version</span>
 </code></pre></div>
-            <p>If you see a similar output to below then you already have xcode installed and you can move on to the next step.</p>
+            <p>If you see a similar output to below then you already have xcode installed and you can move on to step two.</p>
 <div class="highlight"><pre class="highlight shell"><code>Catherines-MacBook-Pro:~ BitGirl<span class="nv">$ </span>gcc <span class="nt">--version</span>
 Configured with: <span class="nt">--prefix</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/usr <span class="nt">--with-gxx-include-dir</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
 Apple LLVM version 8.1.0 <span class="o">(</span>clang-802.0.42<span class="o">)</span>
@@ -162,14 +162,14 @@ InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault
             <h2>Step 2- Install Homebrew</h2>
             <p>To check if you have Homebrew installed run</p>
 <div class="highlight"><pre class="highlight shell"><code>brew <span class="nt">-v</span>
-</code></pre></div>            <p>If that command returnd a version number then you already have Homebrew installed you may want to run the following to get the latest version</p>
+</code></pre></div>            <p>If that command returned a version number then you already have Homebrew installed. If you want to update to the latest version run the following command: </p>
 <div class="highlight"><pre class="highlight shell"><code>brew update
-</code></pre></div>            <p>If that command returnd an error the you will need to install Homebrew by running</p>
+</code></pre></div>            <p>If that command returned an error then you will need to install Homebrew by running:</p>
 <div class="highlight"><pre class="highlight shell"><code>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
-</code></pre></div>            <p>You may be propted for your user's password</p>
+</code></pre></div>            <p>You may be prompted for your user's password</p>
 
             <h2>Step 3 - Install Postgres</h2>
-            <p>Postgres is the type of database that we will use for our application to install do the following</p>
+            <p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
 <div class="highlight"><pre class="highlight shell"><code>initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
 </code></pre></div>            <p>Now you will need to create a user for your Database</p>
 <div class="highlight"><pre class="highlight shell"><code>createuser <span class="nt">-s</span> postgres
@@ -186,7 +186,7 @@ InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault
 <div class="highlight"><pre class="highlight shell"><code>mix local.hex
 </code></pre></div>            <p>Now that we have Hex installed we can install Phoenix</p>
 <div class="highlight"><pre class="highlight shell"><code>mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
-</code></pre></div>
+</code></pre></div>            <p>And we're good to go! Let's go write some elixir!</p>
         </div>
         <!-- /#page-wrapper -->
 
