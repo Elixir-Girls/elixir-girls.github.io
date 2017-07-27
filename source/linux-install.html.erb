@@ -1,5 +1,5 @@
 ---
-title: Elixir Girls Guides Installing on Linux  
+title: Elixir Girls Guides Installing on Linux
 ---
 
 <%= partial "partials/guides-nav" %>
@@ -15,21 +15,21 @@ title: Elixir Girls Guides Installing on Linux
             In order to develop elixir applications, you will need to install elixir itself, erlang because elixir is made for the erlang virtual machine, nodejs for compiling assets in phoenix, and you'll most likely want a RDBMS (relational database management system) such as postgresql or MySQL. These can of course be installed by your distribution's package manager - in fact, there are official instructions for doing so for various distributions <a class="inline-link" href="https://elixir-lang.org/install.html#unix-and-unix-like">here</a>.
           </p>
           <p>
-            You may, however, find yourself developing projects under different versions of elixir, erlang, and possibly even your RDBMS. For such situations, it's useful to use a version manager (those from a ruby background may be familiar with chruby, rbenv, or rvm). This software allows you to install multiple versions of your tools, and swith between them (mostly) automatically, using a file that specifies the version in each project.
+            You may, however, find yourself developing projects under different versions of elixir, erlang, and possibly even your RDBMS. For such situations, it's useful to use a version manager (those from a ruby background may be familiar with chruby, rbenv, or rvm). This software allows you to install multiple versions of your tools, and switch between them (mostly) automatically, using a file that specifies the version in each project.
           </p>
 
-          <h2>The ASDF Version Manager</h2>
+          <h2>ASDF Version Manager</h2>
           <p>
-            The <a class="inline-link" href="https://github.com/asdf-vm/asdf">asdf version manager</a> allows version managerment of multiple different tools using a plugin system. Let's install asdf, then use it to install elixir, erlang, nodejs, and postgresql.
+            The <a class="inline-link" href="https://github.com/asdf-vm/asdf">asdf version manager</a> allows version management of multiple different tools using a plugin system. Let's install asdf, then use it to install elixir, erlang, nodejs, and postgresql.
           </p>
           <p>
             The README on the asdf page has excellent instructions (in fact the below are practically copied from there with modifications for our specific use case); if your environment is different from the standard - for example if you're using a shell other than bash - I'd recommend referring to them.
           </p>
 
-          <h3>Install build tools and libraries</h3>
-          <p>Many plugins will need tools to compile them, and libaries to link to. These need to be installed using your distribution's package manager:
+          <h3>Step 1 - Install build tools and libraries</h3>
+          <p>Many plugins will need tools to compile them, and libraries to link to. These need to be installed using your distribution's package manager:
           <div>
-          deb based pacakage managers (Debian/Ubuntu/Linux Mint/ElementaryOS):
+          deb based package managers (Debian/Ubuntu/Linux Mint/ElementaryOS):
           <% code("bash") do %>
 sudo apt-get install automake autoconf libreadline-dev libncurses-dev libssl-dev libyaml-dev libxslt-dev libffi-dev libtool unixodbc-dev
           <% end %>
@@ -41,7 +41,7 @@ sudo yum install automake autoconf readline-devel ncurses-devel openssl-devel li
           Other distributions may use different package names and package managers; a search for each of the names given should return your distro's equivalent.
           </p>
 
-          <h3>Install asdf</h3>
+          <h3>Step 2 - Install asdf</h3>
           <p>
             <% code("bash") do %>
 git clone https://github.com/asdf-vm/asdf.git ~/.asdf
@@ -52,7 +52,7 @@ source ~/.bashrc
             <% end %>
           </p>
 
-          <h3>Install all the plugins</h3>
+          <h3>Step 3 - Install all the plugins</h3>
           <p>
             If you have any trouble running these, start a new shell.
             <% code("bash") do %>
@@ -64,7 +64,7 @@ asdf plugin-add postgres https://github.com/smashedtoatoms/asdf-postgres.git
             <% end %>
           </p>
 
-          <h3>Install the version of tools we want</h3>
+          <h3>Step 4 - Install the version of tools we want</h3>
           <p>
             <% code("bash") do %>
 asdf install erlang 19.3
@@ -74,7 +74,7 @@ asdf install postgres 9.6.3
             <% end %>
           </p>
 
-          <h3>Set these versions as your defaults</h3>
+          <h3>Step 5 - Set these versions as your defaults</h3>
           <p>
             <% code("bash") do %>
 asdf global erlang 19.3
@@ -86,14 +86,14 @@ asdf global postgres 9.6.3
             Once you have a project to work on, you can add specific versions to a file called <code>.tool-versions</code> which asdf uses to choose which version to use when you switch into the project directory by replacing <code>global</code> in the above snippet with <code>local</code>.
           </p>
 
-          <h3>Start postgres</h3>
+          <h3>Step 6 - Start postgres</h3>
           <p>
             <% code("bash") do %>
 pg_ctl start
             <% end %>
           </p>
 
-          <h2>Install Phoenix</h2>
+          <h2> Step 7 - Install Phoenix</h2>
           <p>
             Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.
           </p>
@@ -107,7 +107,7 @@ pg_ctl start
   mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
           <% end %>
 
-          And we're good to go! Let's go write some elixir!
+          <p>And we're good to go! Let's go write some elixir!</p>
         </div>
         <!-- /#page-wrapper -->
     </div>
