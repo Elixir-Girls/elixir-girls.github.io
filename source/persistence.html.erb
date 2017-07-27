@@ -11,7 +11,7 @@ title: Elixir Girls Guides Slackir App adding persitence
 
         <div id="page-wrapper">
           <h1>Adding Persistence to Slackir</h1>
-            <p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we Credted Read Updated Deleated from a database we would be able to maintain a hostory of messages or have persistence across our application.</p>
+            <p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
 
             <h2>Creating our Database</h2>
             <p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
@@ -22,7 +22,7 @@ $ mix phoenix.migrate
             <% end %>
 
             <h2>Creating our messages in the Database</h2>
-            <p>Next, we need to save the messages as they come in if you are not familiar with programming this is a create in the CRUD app methodology. In web/channels/elixirgirls_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+            <p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/elixirgirls_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
 
             <% code("elixir") do %>
 def handle_in("new_message", message, socket) do
@@ -34,7 +34,7 @@ end
             <% end %>
 
             <h2>Refactor</h2>
-            <p>The above code is alright but if we imagine that we want to scale our application we will have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll change our handler, and add a method:</p>
+            <p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
 
             <% code("elixir") do %>
 def handle_in("new_message", message, socket) do
