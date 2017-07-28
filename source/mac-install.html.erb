@@ -55,6 +55,7 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
             <h2>Step 3 - Install Postgres</h2>
             <p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
             <% code("bash") do %>
+brew install postgres
 initdb /usr/local/var/postgres -E utf8
             <% end %>
             <p>Now you will need to create a user for your Database</p>
@@ -62,7 +63,7 @@ initdb /usr/local/var/postgres -E utf8
 createuser -s postgres
             <% end %>
             <% code("bash") do %>
-launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+brew services start postgresql
             <% end %>
 
             <h2>Step 4 - Install Elixir</h2>
