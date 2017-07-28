@@ -170,10 +170,11 @@ InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault
 
             <h2>Step 3 - Install Postgres</h2>
             <p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
-<div class="highlight"><pre class="highlight shell"><code>initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
+<div class="highlight"><pre class="highlight shell"><code>brew install postgres
+initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
 </code></pre></div>            <p>Now you will need to create a user for your Database</p>
 <div class="highlight"><pre class="highlight shell"><code>createuser <span class="nt">-s</span> postgres
-</code></pre></div><div class="highlight"><pre class="highlight shell"><code>launchctl load <span class="nt">-w</span> ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+</code></pre></div><div class="highlight"><pre class="highlight shell"><code>brew services start postgresql
 </code></pre></div>
             <h2>Step 4 - Install Elixir</h2>
 <div class="highlight"><pre class="highlight shell"><code>brew install erlang elixir
