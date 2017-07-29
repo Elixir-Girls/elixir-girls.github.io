@@ -26,7 +26,7 @@ $ mix ecto.migrate
 
             <% code("elixir") do %>
 def handle_in("new_message", message, socket) do
-  Slackir.Repo.changeset(%Slackir.Message{}, message)
+  Slackir.Message.changeset(%Slackir.Message{}, message)
     |> Slackir.Repo.insert
   broadcast! socket, "new_message", message
   {:noreply, socket}
