@@ -74,9 +74,8 @@ end
 
             <p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
 
-            <% code("js") do %>
-</div> <!-- /container -->
-<script src="//code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Add this line -->
+            <% code("html") do %>
+              <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
             <% end %>
 
             <p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
@@ -110,6 +109,27 @@ channel.join()
   .receive("ok", resp => { console.log("Joined successfully", resp) })
   .receive("error", resp => { console.log("Unable to join", resp) })
             <% end %>
+
+            <p>
+            In web/channels/user_socket.ex we need to define the server-side component of the channel.
+            </p>
+
+            <p>
+            Find a line that looks like this:
+            </p>
+
+            <% code("elxir") do %>
+              channel "room:*", Slackir.RoomChannel
+            <% end %>
+
+            <p>
+            and edit it to look like this:
+            </p>
+
+            <% code("elixir") do %>
+              channel "random:lobby", Slackir.RandomChannel
+            <% end %>
+            </p>
 
             <p>socket.channel("elixirgirls", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
 
