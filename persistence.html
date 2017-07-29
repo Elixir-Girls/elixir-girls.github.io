@@ -144,7 +144,7 @@
             <h2>Creating our Database</h2>
             <p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
 
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.model Message messages name:string text:string
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.model Message messages name:string message:string
 <span class="nv">$ </span>mix ecto.migrate
 </code></pre></div>
             <h2>Creating our messages in the Database</h2>
