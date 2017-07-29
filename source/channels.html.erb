@@ -74,9 +74,8 @@ end
 
             <p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
 
-            <% code("js") do %>
-</div> <!-- /container -->
-<script src="//code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Add this line -->
+            <% code("html") do %>
+              <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
             <% end %>
 
             <p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
