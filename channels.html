@@ -146,12 +146,18 @@
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.channel random
 </code></pre></div>
+            <p>In web/channels/user_socket.ex add the following below the `## Channels` comment.</p>
+
+<div class="highlight"><pre class="highlight elixir"><code><span class="c1">## Channels</span>
+<span class="c1"># channel "room:*", Slackir.RoomChannel</span>
+<span class="n">channel</span> <span class="sd">"</span><span class="s2">elixirbridge"</span><span class="p">,</span> <span class="no">RandomChannel</span><span class="o">.</span><span class="no">RoomChannel</span> <span class="c1"># Add this line</span>
+</code></pre></div>
             <p>In our web/channels/random_channel.ex paste the following</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="k">defmodule</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span> <span class="k">do</span>
   <span class="kn">use</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:channel</span>
 
-  <span class="k">def</span> <span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+  <span class="k">def</span> <span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">elixirbridge"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
     <span class="k">if</span> <span class="n">authorized?</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="k">do</span>
       <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
     <span class="k">else</span>
@@ -190,15 +196,17 @@
 
             <p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
 
-<div class="highlight"><pre class="highlight javascript"><code>
-</code></pre></div>
+<div class="highlight"><pre class="highlight javascript"><code><span class="o">&lt;</span><span class="sr">/div&gt; &lt;!-- /</span><span class="nx">container</span> <span class="o">--&gt;</span>
+<span class="o">&lt;</span><span class="nx">script</span> <span class="nx">src</span><span class="o">=</span><span class="s2">"//code.jquery.com/jquery-1.12.4.min.js"</span><span class="o">&gt;&lt;</span><span class="sr">/script&gt; &lt;!-- Add this line --</span><span class="err">&gt;
+</span></code></pre></div>
             <p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
 
 <div class="highlight"><pre class="highlight javascript"><code><span class="k">import</span> <span class="nx">socket</span> <span class="k">from</span> <span class="s2">"./socket"</span>
 </code></pre></div>
             <p>Then go into your web/static/js/socket.js and paste the following:</p>
 
-<div class="highlight"><pre class="highlight javascript"><code><span class="kd">let</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s2">"elixirbridge"</span><span class="p">,</span> <span class="p">{});</span>
+<div class="highlight"><pre class="highlight javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
+<span class="kd">let</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s2">"elixirbridge"</span><span class="p">,</span> <span class="p">{});</span>
 <span class="kd">let</span> <span class="nx">list</span>    <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#message-list'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">message</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#message'</span><span class="p">);</span>
 <span class="kd">let</span> <span class="nx">name</span>    <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">'#name'</span><span class="p">);</span>
