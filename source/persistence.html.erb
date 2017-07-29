@@ -17,7 +17,7 @@ title: Elixir Girls Guides Slackir App adding persitence
             <p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
 
             <% code("bash") do %>
-$ mix phoenix.gen.model Message messages name:string text:string
+$ mix phoenix.gen.model Message messages name:string message:string
 $ mix ecto.migrate
             <% end %>
 
