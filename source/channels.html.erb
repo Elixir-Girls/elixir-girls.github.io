@@ -20,13 +20,21 @@ title: Elixir Girls Guides Channels
 $ mix phoenix.gen.channel random
             <% end %>
 
+            <p>In web/channels/user_socket.ex add the following below the `## Channels` comment.</p>
+
+            <% code("elixir") do %>
+## Channels
+# channel "room:*", Slackir.RoomChannel
+channel "elixirbridge", RandomChannel.RoomChannel # Add this line
+          <% end %>
+
             <p>In our web/channels/random_channel.ex paste the following</p>
 
             <% code("elixir") do %>
 defmodule Slackir.RandomChannel do
   use Slackir.Web, :channel
 
-  def join("random:lobby", payload, socket) do
+  def join("elixirbridge", payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else
@@ -67,7 +75,8 @@ end
             <p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
 
             <% code("js") do %>
-
+</div> <!-- /container -->
+<script src="//code.jquery.com/jquery-1.12.4.min.js"></script> <!-- Add this line -->
             <% end %>
 
             <p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
@@ -79,6 +88,7 @@ import socket from "./socket"
             <p>Then go into your web/static/js/socket.js and paste the following:</p>
 
             <% code("js") do %>
+socket.connect()
 let channel = socket.channel("elixirbridge", {});
 let list    = $('#message-list');
 let message = $('#message');
