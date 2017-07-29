@@ -44,7 +44,7 @@ def handle_in("shout", message, socket) do
 end
 
 def save_message(message) do
-  Slackir.Repo.changeset(%Slackir.Message{}, message)
+  Slackir.Message.changeset(%Slackir.Message{}, message)
     |> Slackir.Repo.insert
 end
             <% end %>
