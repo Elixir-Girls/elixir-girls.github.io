@@ -18,11 +18,11 @@ title: Elixir Girls Guides Slackir App adding persitence
 
             <% code("bash") do %>
 $ mix phoenix.gen.model Message messages name:string text:string
-$ mix phoenix.migrate
+$ mix ecto.migrate
             <% end %>
 
             <h2>Creating our messages in the Database</h2>
-            <p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/elixirgirls_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+            <p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
 
             <% code("elixir") do %>
 def handle_in("new_message", message, socket) do
