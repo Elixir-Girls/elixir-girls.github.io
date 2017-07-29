@@ -25,7 +25,7 @@ $ mix phoenix.gen.channel random
             <% code("elixir") do %>
 ## Channels
 # channel "room:*", Slackir.RoomChannel
-channel "elixirbridge", RandomChannel.RoomChannel # Add this line
+channel "elixirbridge", Slackir.RandomChannel # Add this line
           <% end %>
 
             <p>In our web/channels/random_channel.ex paste the following</p>
