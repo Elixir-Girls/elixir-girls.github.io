@@ -24,7 +24,7 @@ jobs:
           - vendor/bundle
 
       # Buld static files
-      - run: bundle exec middleman build
+      - run: bundle exec middleman build --verbose
       - deploy:
           name: Maybe Deploy
           command: |
