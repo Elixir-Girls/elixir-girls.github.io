@@ -161,7 +161,7 @@
             <p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">save_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+  <span class="n">spawn</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:save_message</span><span class="p">,</span> <span class="p">[</span><span class="n">message</span><span class="p">])</span>
   <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
   <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
 <span class="k">end</span>
