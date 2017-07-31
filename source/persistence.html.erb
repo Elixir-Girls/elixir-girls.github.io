@@ -38,7 +38,7 @@ end
 
             <% code("elixir") do %>
 def handle_in("shout", message, socket) do
-  save_message(message)
+  spawn(__MODULE__, :save_message, [message])
   broadcast! socket, "shout", message
   {:noreply, socket}
 end
