@@ -25,7 +25,7 @@ $ mix phoenix.gen.channel random
             <% code("elixir") do %>
 ## Channels
 # channel "room:*", Slackir.RoomChannel
-channel "elixirbridge", Slackir.RandomChannel # Add this line
+channel "random:lobby", Slackir.RandomChannel # Add this line
           <% end %>
 
             <p>In our web/channels/random_channel.ex paste the following</p>
@@ -34,7 +34,7 @@ channel "elixirbridge", Slackir.RandomChannel # Add this line
 defmodule Slackir.RandomChannel do
   use Slackir.Web, :channel
 
-  def join("elixirbridge", payload, socket) do
+  def join("random:lobby", payload, socket) do
     if authorized?(payload) do
       {:ok, socket}
     else
@@ -88,7 +88,7 @@ import socket from "./socket"
 
             <% code("js") do %>
 socket.connect()
-let channel = socket.channel("elixirbridge", {});
+let channel = socket.channel("random:lobby", {});
 let list    = $('#message-list');
 let message = $('#message');
 let name    = $('#name');
