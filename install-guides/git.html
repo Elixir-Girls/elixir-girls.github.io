@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Elixir Girls Guides Installing on Windows</title>
+    <title>Elixir Girls Installing Git</title>
 
     <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
     <script src="/javascripts/all.js"></script>
@@ -48,7 +48,7 @@
 
 </head>
 
-  <body class="windows-install">
+  <body class="install-guides install-guides_git">
       <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +69,7 @@
                     <a class="page-scroll" href="/#events">Events</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/guides.html">Guides</a>
+                    <a class="page-scroll" href="/guides/">Guides</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/#sponsors">Sponsors</a>
@@ -104,28 +104,28 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="mac-install.html">Mac</a>
+                    <a href="/install-guides/mac.html">Mac</a>
                 </li>
                 <li>
-                    <a href="windows-install.html">Windows</a>
+                    <a href="/install-guides/windows.html">Windows</a>
                 </li>
                 <li>
-                    <a href="linux-install.html">Linux</a>
+                    <a href="/install-guides/linux.html">Linux</a>
                 </li>
                 <li>
-                    <a href="git-install.html">Install Git</a>
+                    <a href="/install-guides/git.html">Install Git</a>
                 </li>
                 <li>
-                    <a href="dev-tools.html">Additional Tools</a>
+                    <a href="/install-guides/dev-tools.html">Additional Tools</a>
                 </li>
                 <li>
-                    <a href="slackir.html">Slackir App</a>
+                    <a href="/guides/slackir.html">Slackir App</a>
                 </li>
                 <li>
-                    <a href="channels.html">Channels</a>
+                    <a href="/guides/channels.html">Channels</a>
                 </li>
                 <li>
-                    <a href="persistence.html">Persistence</a>
+                    <a href="/guides/persistence.html">Persistence</a>
                 </li>
             </ul>
         </div>
@@ -135,20 +135,29 @@
 </nav>
 
     <div id="page-wrapper">
-      <h1>Windows setup</h1>
+      <h1>Git</h1>
+<p>Git is a widely used modern version control system and by far the most popular. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel. The name Git, which means unpleasant person in British English slang, came about because of Torvalds manner he has been cited as saying "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'." A staggering number of software projects rely on Git for version control, including commercial projects, as well as, open source including Elixir and Phoenix.</p>
 
-<h2>Step 1- Download Windows Installer</h2>
-<a href="https://repo.hex.pm/elixir-websetup.exe">https://repo.hex.pm/elixir-websetup.exe</a>
+<p>Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software, as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.</p>
 
-<p>Once downloaded you will want to go ahead and run the installer</p>
+<p>In addition to being distributed, Git has been designed with performance, security and flexibility in mind.</p>
 
-<h2>Step 2- Install Postgres</h2>
-<p>Postgres is the type of database that we will use for our application. To install click on the following link to download the Postgres installer</p>
-<a class="inline-link" href="http://www.enterprisedb.com/products-services-training/pgdownload#windows">http://www.enterprisedb.com/products-services-training/pgdownload#windows</a>
+<h2>Step 1 - Install Git</h2>
+<h3>Mac</h3>
+<p>Type this in the terminal:</p>
+<div class="highlight"><pre class="highlight shell"><code>git <span class="nt">--version</span>
+</code></pre></div><p>If this returns a version number then you can skip this section, if not, you will need to install git by running:</p>
+<div class="highlight"><pre class="highlight shell"><code>brew install git
+</code></pre></div>
+<h3>Windows</h3>
+<p>Go to <a href="https://git-scm.com/download/win" target="blank" class="inline-link">git-scm.com/download/win</a> and download the Windows installer. Run the executable and choose the default options.
 
-<p>If this is your first time installing Postgres than you will need to create a database.</p>
-
-<p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
+<h2>Step 2 - Configure Git</h2>
+<div class="highlight"><pre class="highlight shell"><code>git config <span class="nt">--global</span> user.name <span class="s2">"Your Actual Name"</span>
+git config <span class="nt">--global</span> user.email <span class="s2">"Your Actual Email"</span>
+</code></pre></div>
+<h2>Step 3 - Create a Github account</h2>
+<p>If you don't already have a Github account you will need to set one up if you want to deploy you application. It's free and only takes a couple of minutes please go to <a href="https://github.com" target="blank" class="inline-link">github.com</a></p>
 
     </div>
     <!-- /#page-wrapper -->

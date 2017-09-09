@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Elixir Girls Guides Slackir App adding persitence</title>
+    <title>Elixir Girls Guides Dev Tools</title>
 
     <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
     <script src="/javascripts/all.js"></script>
@@ -48,7 +48,7 @@
 
 </head>
 
-  <body class="persistence">
+  <body class="install-guides install-guides_dev-tools">
       <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +69,7 @@
                     <a class="page-scroll" href="/#events">Events</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/guides.html">Guides</a>
+                    <a class="page-scroll" href="/guides/">Guides</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/#sponsors">Sponsors</a>
@@ -104,28 +104,28 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="mac-install.html">Mac</a>
+                    <a href="/install-guides/mac.html">Mac</a>
                 </li>
                 <li>
-                    <a href="windows-install.html">Windows</a>
+                    <a href="/install-guides/windows.html">Windows</a>
                 </li>
                 <li>
-                    <a href="linux-install.html">Linux</a>
+                    <a href="/install-guides/linux.html">Linux</a>
                 </li>
                 <li>
-                    <a href="git-install.html">Install Git</a>
+                    <a href="/install-guides/git.html">Install Git</a>
                 </li>
                 <li>
-                    <a href="dev-tools.html">Additional Tools</a>
+                    <a href="/install-guides/dev-tools.html">Additional Tools</a>
                 </li>
                 <li>
-                    <a href="slackir.html">Slackir App</a>
+                    <a href="/guides/slackir.html">Slackir App</a>
                 </li>
                 <li>
-                    <a href="channels.html">Channels</a>
+                    <a href="/guides/channels.html">Channels</a>
                 </li>
                 <li>
-                    <a href="persistence.html">Persistence</a>
+                    <a href="/guides/persistence.html">Persistence</a>
                 </li>
             </ul>
         </div>
@@ -135,39 +135,36 @@
 </nav>
 
     <div id="page-wrapper">
-      <h1>Adding Persistence to Slackir</h1>
-<p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
+      <h1>Additional Tools</h1>
+<p>Depending on where you are at in your programming journey here are some additional tools you may want to consider installing.</p>
 
-<h2>Creating our Database</h2>
-<p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
+<h2>Text Editors</h2>
+<p>If you are just starting out programming you will want to install a text editor so that you easily write code.</p>
 
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.model Message messages name:string message:string
-<span class="nv">$ </span>mix ecto.migrate
-</code></pre></div>
-<h2>Creating our messages in the Database</h2>
-<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+<h3>Mac</h3>
+<ul>
+  <li><a href="https://www.sublimetext.com/3" target="blank" class="inline-link">Sublime Text</a></li>
+  <li><a href="https://atom.io/" target="blank" class="inline-link">Atom</a></li>
+</ul>
+<h3>Windows</h3>
+<ul>
+  <li><a href="https://www.sublimetext.com/3" target="blank" class="inline-link">Sublime Text</a></li>
+  <li><a href="https://github.com/atom/atom/releases/download/v1.18.0/atom-windows.zip" target="blank" class="inline-link">Atom</a></li>
+</ul>
 
-<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
-  <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
-  <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
-  <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
-<span class="k">end</span>
-</code></pre></div>
-<h2>Refactor</h2>
-<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
+<h2>Git GUI</h2>
+<p>If you are not familiar with git or are a visual learner you may find a graphical user interface a helpful tool for understanding Git Workflows.</p>
 
-<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">spawn</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:save_message</span><span class="p">,</span> <span class="p">[</span><span class="n">message</span><span class="p">])</span>
-  <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
-  <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
-<span class="k">end</span>
-
-<span class="k">def</span> <span class="n">save_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">do</span>
-  <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
-<span class="k">end</span>
-</code></pre></div><p>What this does is spawn an elixir process to do the save, outside of the request cycle. Since we don’t need to see the results of the save to broadcast the message, there’s no reason to wait for it.</p>
+<h3>Mac</h3>
+<ul>
+  <li><a href="https://www.sourcetreeapp.com/" target="blank" class="inline-link">Source Tree</a></li>
+  <li><a href="https://www.git-tower.com/mac/" target="blank" class="inline-link">Tower</a></li>
+</ul>
+<h3>Windows</h3>
+<ul>
+  <li><a href="https://www.sourcetreeapp.com/" target="blank" class="inline-link">Source Tree</a></li>
+  <li><a href="https://www.git-tower.com/windows" target="blank" class="inline-link">Tower</a></li>
+</ul>
 
     </div>
     <!-- /#page-wrapper -->

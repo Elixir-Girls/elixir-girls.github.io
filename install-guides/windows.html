@@ -6,7 +6,7 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 
     <!-- Use title if it's in the page YAML frontmatter -->
-    <title>Elixir Girls Guides Dev Tools</title>
+    <title>Elixir Girls Guides Installing on Windows</title>
 
     <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
     <script src="/javascripts/all.js"></script>
@@ -48,7 +48,7 @@
 
 </head>
 
-  <body class="dev-tools">
+  <body class="install-guides install-guides_windows">
       <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -69,7 +69,7 @@
                     <a class="page-scroll" href="/#events">Events</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/guides.html">Guides</a>
+                    <a class="page-scroll" href="/guides/">Guides</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="/#sponsors">Sponsors</a>
@@ -104,28 +104,28 @@
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
                 <li>
-                    <a href="mac-install.html">Mac</a>
+                    <a href="/install-guides/mac.html">Mac</a>
                 </li>
                 <li>
-                    <a href="windows-install.html">Windows</a>
+                    <a href="/install-guides/windows.html">Windows</a>
                 </li>
                 <li>
-                    <a href="linux-install.html">Linux</a>
+                    <a href="/install-guides/linux.html">Linux</a>
                 </li>
                 <li>
-                    <a href="git-install.html">Install Git</a>
+                    <a href="/install-guides/git.html">Install Git</a>
                 </li>
                 <li>
-                    <a href="dev-tools.html">Additional Tools</a>
+                    <a href="/install-guides/dev-tools.html">Additional Tools</a>
                 </li>
                 <li>
-                    <a href="slackir.html">Slackir App</a>
+                    <a href="/guides/slackir.html">Slackir App</a>
                 </li>
                 <li>
-                    <a href="channels.html">Channels</a>
+                    <a href="/guides/channels.html">Channels</a>
                 </li>
                 <li>
-                    <a href="persistence.html">Persistence</a>
+                    <a href="/guides/persistence.html">Persistence</a>
                 </li>
             </ul>
         </div>
@@ -135,36 +135,20 @@
 </nav>
 
     <div id="page-wrapper">
-      <h1>Additional Tools</h1>
-<p>Depending on where you are at in your programming journey here are some additional tools you may want to consider installing.</p>
+      <h1>Windows setup</h1>
 
-<h2>Text Editors</h2>
-<p>If you are just starting out programming you will want to install a text editor so that you easily write code.</p>
+<h2>Step 1- Download Windows Installer</h2>
+<a href="https://repo.hex.pm/elixir-websetup.exe">https://repo.hex.pm/elixir-websetup.exe</a>
 
-<h3>Mac</h3>
-<ul>
-  <li><a href="https://www.sublimetext.com/3" target="blank" class="inline-link">Sublime Text</a></li>
-  <li><a href="https://atom.io/" target="blank" class="inline-link">Atom</a></li>
-</ul>
-<h3>Windows</h3>
-<ul>
-  <li><a href="https://www.sublimetext.com/3" target="blank" class="inline-link">Sublime Text</a></li>
-  <li><a href="https://github.com/atom/atom/releases/download/v1.18.0/atom-windows.zip" target="blank" class="inline-link">Atom</a></li>
-</ul>
+<p>Once downloaded you will want to go ahead and run the installer</p>
 
-<h2>Git GUI</h2>
-<p>If you are not familiar with git or are a visual learner you may find a graphical user interface a helpful tool for understanding Git Workflows.</p>
+<h2>Step 2- Install Postgres</h2>
+<p>Postgres is the type of database that we will use for our application. To install click on the following link to download the Postgres installer</p>
+<a class="inline-link" href="http://www.enterprisedb.com/products-services-training/pgdownload#windows">http://www.enterprisedb.com/products-services-training/pgdownload#windows</a>
 
-<h3>Mac</h3>
-<ul>
-  <li><a href="https://www.sourcetreeapp.com/" target="blank" class="inline-link">Source Tree</a></li>
-  <li><a href="https://www.git-tower.com/mac/" target="blank" class="inline-link">Tower</a></li>
-</ul>
-<h3>Windows</h3>
-<ul>
-  <li><a href="https://www.sourcetreeapp.com/" target="blank" class="inline-link">Source Tree</a></li>
-  <li><a href="https://www.git-tower.com/windows" target="blank" class="inline-link">Tower</a></li>
-</ul>
+<p>If this is your first time installing Postgres than you will need to create a database.</p>
+
+<p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/install-guides/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
 
     </div>
     <!-- /#page-wrapper -->

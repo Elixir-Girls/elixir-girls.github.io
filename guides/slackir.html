@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Elixir Girls Guides Slackir App</title>
+
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
+    <script src="/javascripts/all.js"></script>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elixir Girls website">
+    <meta name="author" content="Cath Jones">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Elixir Girls" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="http://elixirgirls.com" />
+    <meta property="og:image" content="http://elixirgirls.com/img/header.jpg" />
+    <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/highlighting.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  <body class="guides guides_slackir">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/#page-top">Elixir Girls</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#events">Events</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/guides/">Guides</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Elixir Girls Guides</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav navbar-collapse">
+            <ul class="nav" id="side-menu">
+                <li>
+                    <a href="/install-guides/mac.html">Mac</a>
+                </li>
+                <li>
+                    <a href="/install-guides/windows.html">Windows</a>
+                </li>
+                <li>
+                    <a href="/install-guides/linux.html">Linux</a>
+                </li>
+                <li>
+                    <a href="/install-guides/git.html">Install Git</a>
+                </li>
+                <li>
+                    <a href="/install-guides/dev-tools.html">Additional Tools</a>
+                </li>
+                <li>
+                    <a href="/guides/slackir.html">Slackir App</a>
+                </li>
+                <li>
+                    <a href="/guides/channels.html">Channels</a>
+                </li>
+                <li>
+                    <a href="/guides/persistence.html">Persistence</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+    <div id="page-wrapper">
+      <h1>Slackir</h1>
+<p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir! It's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippets through out these docs, if they beign with a "$"" then they are terminal commands and you do not need to copy the $ into the terminal.</p>
+
+<h2>Setting up Our App</h2>
+<p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.new slackir
+</code></pre></div>
+<p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cd </span>slackir
+</code></pre></div>
+<p>Now we can install our applications dependencies by running</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>npm install
+</code></pre></div>
+<p>and we can create our database by running</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix ecto.create
+</code></pre></div>
+<p>To start the server you will need to run</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.server
+</code></pre></div>
+<p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application! </p>
+
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+
+  </body>
+
+  <!-- jQuery -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="/javascripts/creative.js"></script>
+
+</html>
