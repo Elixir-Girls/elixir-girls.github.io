@@ -25,7 +25,7 @@
     <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -33,10 +33,10 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/creative.css" rel="stylesheet">
     <link href="/stylesheets/highlighting.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
 </head>
 
   <body class="mac-install">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -84,11 +84,9 @@
     <!-- /.container-fluid -->
 </nav>
 
-
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -136,17 +134,16 @@
     <!-- /.navbar-static-side -->
 </nav>
 
+    <div id="page-wrapper">
+      <h1>Mac OSX setup</h1>
+<p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatible version of OSX. Click on the Apple icon in the top left of your screen and select “About This Mac” to check. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are all set to proceed to the next step if not you will need to upgrade.</p>
 
-        <div id="page-wrapper">
-            <h1>Mac OSX setup</h1>
-            <p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatible version of OSX. Click on the Apple icon in the top left of your screen and select “About This Mac” to check. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are all set to proceed to the next step if not you will need to upgrade.</p>
-
-            <h2>Step 1- Install Xcode Command Line tools</h2>
-            <p>Open Iterm or your terminal application of choice. Enter the following command to check if you already have xcode installed</p>
+<h2>Step 1- Install Xcode Command Line tools</h2>
+<p>Open Iterm or your terminal application of choice. Enter the following command to check if you already have xcode installed</p>
 
 <div class="highlight"><pre class="highlight shell"><code>gcc <span class="nt">--version</span>
 </code></pre></div>
-            <p>If you see a similar output to below then you already have xcode installed and you can move on to step two.</p>
+<p>If you see a similar output to below then you already have xcode installed and you can move on to step two.</p>
 <div class="highlight"><pre class="highlight shell"><code>Catherines-MacBook-Pro:~ BitGirl<span class="nv">$ </span>gcc <span class="nt">--version</span>
 Configured with: <span class="nt">--prefix</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/usr <span class="nt">--with-gxx-include-dir</span><span class="o">=</span>/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
 Apple LLVM version 8.1.0 <span class="o">(</span>clang-802.0.42<span class="o">)</span>
@@ -154,48 +151,49 @@ Target: x86_64-apple-darwin16.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
 </code></pre></div>
-            <p>To install xcode run the following command</p>
+<p>To install xcode run the following command</p>
 <div class="highlight"><pre class="highlight shell"><code>xcode-select <span class="nt">--install</span>
 </code></pre></div>
-            <p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
+<p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
 
-            <h2>Step 2- Install Homebrew</h2>
-            <p>To check if you have Homebrew installed run</p>
+<h2>Step 2- Install Homebrew</h2>
+<p>To check if you have Homebrew installed run</p>
 <div class="highlight"><pre class="highlight shell"><code>brew <span class="nt">-v</span>
-</code></pre></div>            <p>If that command returned a version number then you already have Homebrew installed. If you want to update to the latest version run the following command: </p>
+</code></pre></div><p>If that command returned a version number then you already have Homebrew installed. If you want to update to the latest version run the following command: </p>
 <div class="highlight"><pre class="highlight shell"><code>brew update
-</code></pre></div>            <p>If that command returned an error then you will need to install Homebrew by running:</p>
+</code></pre></div><p>If that command returned an error then you will need to install Homebrew by running:</p>
 <div class="highlight"><pre class="highlight shell"><code>ruby <span class="nt">-e</span> <span class="s2">"</span><span class="k">$(</span>curl <span class="nt">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/master/install<span class="k">)</span><span class="s2">"</span>
-</code></pre></div>            <p>You may be prompted for your user's password</p>
+</code></pre></div><p>You may be prompted for your user's password</p>
 
-            <h2>Step 3 - Install Postgres</h2>
-            <p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
+<h2>Step 3 - Install Postgres</h2>
+<p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
 <div class="highlight"><pre class="highlight shell"><code>brew install postgres
 initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
-</code></pre></div>            <p>Now you will need to create a user for your Database</p>
+</code></pre></div><p>Now you will need to create a user for your Database</p>
 <div class="highlight"><pre class="highlight shell"><code>createuser <span class="nt">-s</span> postgres
 </code></pre></div><div class="highlight"><pre class="highlight shell"><code>brew services start postgresql
 </code></pre></div>
-            <h2>Step 4 - Install Elixir</h2>
+<h2>Step 4 - Install Elixir</h2>
 <div class="highlight"><pre class="highlight shell"><code>brew install erlang elixir
 </code></pre></div>
-            <h2>Step 5 - Install Node</h2>
+<h2>Step 5 - Install Node</h2>
 <div class="highlight"><pre class="highlight shell"><code>brew install node
 </code></pre></div>
-            <h2>Step 6 - Install Phoenix</h2>
-            <p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
+<h2>Step 6 - Install Phoenix</h2>
+<p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
 <div class="highlight"><pre class="highlight shell"><code>mix local.hex
-</code></pre></div>            <p>Now that we have Hex installed we can install Phoenix</p>
+</code></pre></div><p>Now that we have Hex installed we can install Phoenix</p>
 <div class="highlight"><pre class="highlight shell"><code>mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
-</code></pre></div>            <p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
-
-        </div>
-        <!-- /#page-wrapper -->
+</code></pre></div><p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-<!-- jQuery -->
+  </body>
+
+  <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -209,6 +207,4 @@ initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
 <!-- Theme JavaScript -->
 <script src="/javascripts/creative.js"></script>
 
-
-  </body>
 </html>

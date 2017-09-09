@@ -25,7 +25,7 @@
     <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -33,10 +33,10 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/creative.css" rel="stylesheet">
     <link href="/stylesheets/highlighting.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
 </head>
 
   <body class="channels">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -84,11 +84,9 @@
     <!-- /.container-fluid -->
 </nav>
 
-
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -136,23 +134,22 @@
     <!-- /.navbar-static-side -->
 </nav>
 
+    <div id="page-wrapper">
+      <h1>Channels</h1>
+<p>Now that you have your app up and running we can start adding functionality. The first thing out chat app needs to be able to do is communicate in Phoneix. This is done via a Channel which uses websockets. Websockets create connections similar to pipes or land line telephones being that they are always open or available. The other forms of communication that are typically used on the web are more like sending snail mail-- a message is sent, the message is received and then a reply is sent. An example of this would be HTTP.</p>
 
-        <div id="page-wrapper">
-          <h1>Channels</h1>
-            <p>Now that you have your app up and running we can start adding functionality. The first thing out chat app needs to be able to do is communicate in Phoneix. This is done via a Channel which uses websockets. Websockets create connections similar to pipes or land line telephones being that they are always open or available. The other forms of communication that are typically used on the web are more like sending snail mail-- a message is sent, the message is received and then a reply is sent. An example of this would be HTTP.</p>
-
-            <h2>Setting up Our Channels</h2>
-            <p>Phoenix as of 1.2, includes a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command, so we will follow the Slack theme, and call it random. Look out for any actions that running the command asks you to complete.</p>
+<h2>Setting up Our Channels</h2>
+<p>Phoenix as of 1.2, includes a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command, so we will follow the Slack theme, and call it random. Look out for any actions that running the command asks you to complete.</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.channel random
 </code></pre></div>
-            <p>In web/channels/user_socket.ex add the following below the `## Channels` comment.</p>
+<p>In web/channels/user_socket.ex add the following below the `## Channels` comment.</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="c1">## Channels</span>
 <span class="c1"># channel "room:*", Slackir.RoomChannel</span>
 <span class="n">channel</span> <span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span> <span class="c1"># Add this line</span>
 </code></pre></div>
-            <p>In our web/channels/random_channel.ex paste the following</p>
+<p>In our web/channels/random_channel.ex paste the following</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="k">defmodule</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span> <span class="k">do</span>
   <span class="kn">use</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Web</span><span class="p">,</span> <span class="ss">:channel</span>
@@ -184,25 +181,25 @@
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div>
-            <p>Now that we have generated some code let's look at what it does. First the random_channel.ex is the channel equivalent of a controller in Phoenix, being that it handles websocket requests instead of http requests. On line 2 :channel is referring to the Phoenix channel method. It takes a parameter which is used as a namespace for the websocket connections. In this instance the name space is "random:lobby".</p>
+<p>Now that we have generated some code let's look at what it does. First the random_channel.ex is the channel equivalent of a controller in Phoenix, being that it handles websocket requests instead of http requests. On line 2 :channel is referring to the Phoenix channel method. It takes a parameter which is used as a namespace for the websocket connections. In this instance the name space is "random:lobby".</p>
 
-            <p>The next argument Slackir.RandomChannel is made up of two parts. The first part Slackir is the name of the app. The second part RandomChannel is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
+<p>The next argument Slackir.RandomChannel is made up of two parts. The first part Slackir is the name of the app. The second part RandomChannel is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
 
-            <p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us it's elixirgirls, allows clients, also known as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request to the right controller, the topic directs the socket to the right module, in this case, Slackir.RandomChannel.</p>
+<p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us it's elixirgirls, allows clients, also known as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request to the right controller, the topic directs the socket to the right module, in this case, Slackir.RandomChannel.</p>
 
-            <p>Now, let’s look at the join method. def join ("random:lobby", payload, socket) do: takes three arguments. The first argument, the name of the channel, "random:lobby", makes it so that this method is only called when the client is joining the specific channel. The second argument, payload is the request from the user; it can contain auth credentials, a message or anything the user wants. Finally, it takes socket, which is the websocket connection. There’s a test, authorized?, which always returns true. Then, {:ok, socket} just returns a status and the websocket they are connecting to. join always returns {:ok, socket} to allow all connections to the channel.</p>
+<p>Now, let’s look at the join method. def join ("random:lobby", payload, socket) do: takes three arguments. The first argument, the name of the channel, "random:lobby", makes it so that this method is only called when the client is joining the specific channel. The second argument, payload is the request from the user; it can contain auth credentials, a message or anything the user wants. Finally, it takes socket, which is the websocket connection. There’s a test, authorized?, which always returns true. Then, {:ok, socket} just returns a status and the websocket they are connecting to. join always returns {:ok, socket} to allow all connections to the channel.</p>
 
-            <p>Once a user joins a channel they can send messages to the channel and they’ll be received by one of the handle_in messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s the second that allows us to build our chat room with just a little front end work. When you send a message to the chat room, this method sends it back to you and to everyone else in the channel.</p>
+<p>Once a user joins a channel they can send messages to the channel and they’ll be received by one of the handle_in messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s the second that allows us to build our chat room with just a little front end work. When you send a message to the chat room, this method sends it back to you and to everyone else in the channel.</p>
 
-            <p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
+<p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
 
-<div class="highlight"><pre class="highlight html"><code>              <span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//code.jquery.com/jquery-1.12.4.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
+<div class="highlight"><pre class="highlight html"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"//code.jquery.com/jquery-1.12.4.min.js"</span><span class="nt">&gt;&lt;/script&gt;</span>
 </code></pre></div>
-            <p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
+<p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
 
 <div class="highlight"><pre class="highlight javascript"><code><span class="k">import</span> <span class="nx">socket</span> <span class="k">from</span> <span class="s2">"./socket"</span>
 </code></pre></div>
-            <p>Then go into your web/static/js/socket.js and paste the following:</p>
+<p>Then go into your web/static/js/socket.js and paste the following:</p>
 
 <div class="highlight"><pre class="highlight javascript"><code><span class="nx">socket</span><span class="p">.</span><span class="nx">connect</span><span class="p">()</span>
 <span class="kd">let</span> <span class="nx">channel</span> <span class="o">=</span> <span class="nx">socket</span><span class="p">.</span><span class="nx">channel</span><span class="p">(</span><span class="s2">"random:lobby"</span><span class="p">,</span> <span class="p">{});</span>
@@ -226,26 +223,26 @@
   <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"ok"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Joined successfully"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
   <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"error"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Unable to join"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
 </code></pre></div>
-            <p>
-            In web/channels/user_socket.ex we need to define the server-side component of the channel.
-            </p>
+<p>
+In web/channels/user_socket.ex we need to define the server-side component of the channel.
+</p>
 
-            <p>
-            Find a line that looks like this:
-            </p>
+<p>
+Find a line that looks like this:
+</p>
 
-<div class="highlight"><pre class="highlight elixir"><code>              <span class="n">channel</span> <span class="sd">"</span><span class="s2">room:*"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RoomChannel</span>
+<div class="highlight"><pre class="highlight elixir"><code>  <span class="n">channel</span> <span class="sd">"</span><span class="s2">room:*"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RoomChannel</span>
 </code></pre></div>
-            <p>
-            and edit it to look like this:
-            </p>
+<p>
+and edit it to look like this:
+</p>
 
-<div class="highlight"><pre class="highlight elixir"><code>              <span class="n">channel</span> <span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span>
-</code></pre></div>            </p>
+<div class="highlight"><pre class="highlight elixir"><code>  <span class="n">channel</span> <span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span>
+</code></pre></div></p>
 
-            <p>socket.channel("elixirgirls", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
+<p>socket.channel("elixirgirls", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
 
-            <p>Next we will want to create the container for our messages: Open web/templates/page/index.html.eex, and replace its contents with:</p>
+<p>Next we will want to create the container for our messages: Open web/templates/page/index.html.eex, and replace its contents with:</p>
 
 <div class="highlight"><pre class="highlight html"><code><span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">'message-list'</span> <span class="na">class=</span><span class="s">'row'</span><span class="nt">&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
@@ -258,7 +255,7 @@
     <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">'text'</span> <span class="na">id=</span><span class="s">'message'</span> <span class="na">class=</span><span class="s">'form-control'</span> <span class="na">placeholder=</span><span class="s">'Message'</span> <span class="nt">/&gt;</span>
   <span class="nt">&lt;/div&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
-</code></pre></div>            <p>What we have done here is create an empty div that will list all the chat messages and added two text fields, one for the user’s name and one for the message. Now you will want to open web/static/css/app.css and paste this at the end:</p>
+</code></pre></div><p>What we have done here is create an empty div that will list all the chat messages and added two text fields, one for the user’s name and one for the message. Now you will want to open web/static/css/app.css and paste this at the end:</p>
 
 <div class="highlight"><pre class="highlight css"><code><span class="nf">#message-list</span> <span class="p">{</span>
   <span class="nl">border</span><span class="p">:</span> <span class="m">1px</span> <span class="nb">solid</span> <span class="m">#777</span><span class="p">;</span>
@@ -268,13 +265,14 @@
   <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">50px</span><span class="p">;</span>
 <span class="p">}</span>
 </code></pre></div>
-        </div>
-        <!-- /#page-wrapper -->
-
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-<!-- jQuery -->
+  </body>
+
+  <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -288,6 +286,4 @@
 <!-- Theme JavaScript -->
 <script src="/javascripts/creative.js"></script>
 
-
-  </body>
 </html>

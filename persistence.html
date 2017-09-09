@@ -25,7 +25,7 @@
     <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -33,10 +33,10 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/creative.css" rel="stylesheet">
     <link href="/stylesheets/highlighting.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
 </head>
 
   <body class="persistence">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -84,11 +84,9 @@
     <!-- /.container-fluid -->
 </nav>
 
-
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -136,29 +134,28 @@
     <!-- /.navbar-static-side -->
 </nav>
 
+    <div id="page-wrapper">
+      <h1>Adding Persistence to Slackir</h1>
+<p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
 
-        <div id="page-wrapper">
-          <h1>Adding Persistence to Slackir</h1>
-            <p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
-
-            <h2>Creating our Database</h2>
-            <p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
+<h2>Creating our Database</h2>
+<p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.model Message messages name:string message:string
 <span class="nv">$ </span>mix ecto.migrate
 </code></pre></div>
-            <h2>Creating our messages in the Database</h2>
-            <p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+<h2>Creating our messages in the Database</h2>
+<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
   <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
+  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
   <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
   <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
 <span class="k">end</span>
 </code></pre></div>
-            <h2>Refactor</h2>
-            <p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
+<h2>Refactor</h2>
+<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
 
 <div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
   <span class="n">spawn</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:save_message</span><span class="p">,</span> <span class="p">[</span><span class="n">message</span><span class="p">])</span>
@@ -168,17 +165,18 @@
 
 <span class="k">def</span> <span class="n">save_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">do</span>
   <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-    <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
+  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
 <span class="k">end</span>
-</code></pre></div>            <p>What this does is spawn an elixir process to do the save, outside of the request cycle. Since we don’t need to see the results of the save to broadcast the message, there’s no reason to wait for it.</p>
-
-        </div>
-        <!-- /#page-wrapper -->
+</code></pre></div><p>What this does is spawn an elixir process to do the save, outside of the request cycle. Since we don’t need to see the results of the save to broadcast the message, there’s no reason to wait for it.</p>
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-<!-- jQuery -->
+  </body>
+
+  <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -192,6 +190,4 @@
 <!-- Theme JavaScript -->
 <script src="/javascripts/creative.js"></script>
 
-
-  </body>
 </html>

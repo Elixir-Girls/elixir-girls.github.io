@@ -25,7 +25,7 @@
     <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
 
     <!-- Bootstrap Core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -33,10 +33,10 @@
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
 
     <!-- Plugin CSS -->
-    <link href="vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link href="stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/creative.css" rel="stylesheet">
     <link href="/stylesheets/highlighting.css" rel="stylesheet" />
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -49,7 +49,7 @@
 </head>
 
   <body class="slackir">
-    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -84,11 +84,9 @@
     <!-- /.container-fluid -->
 </nav>
 
-
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -136,43 +134,41 @@
     <!-- /.navbar-static-side -->
 </nav>
 
+    <div id="page-wrapper">
+      <h1>Slackir</h1>
+<p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir! It's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippets through out these docs, if they beign with a "$"" then they are terminal commands and you do not need to copy the $ into the terminal.</p>
 
-        <div id="page-wrapper">
-          <h1>Slackir</h1>
-            <p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir! It's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippets through out these docs, if they beign with a "$"" then they are terminal commands and you do not need to copy the $ into the terminal.</p>
-
-            <h2>Setting up Our App</h2>
-            <p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
+<h2>Setting up Our App</h2>
+<p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.new slackir
 </code></pre></div>
-            <p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
+<p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">cd </span>slackir
 </code></pre></div>
-            <p>Now we can install our applications dependencies by running</p>
+<p>Now we can install our applications dependencies by running</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>npm install
 </code></pre></div>
-            <p>and we can create our database by running</p>
+<p>and we can create our database by running</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix ecto.create
 </code></pre></div>
-            <p>To start the server you will need to run</p>
+<p>To start the server you will need to run</p>
 
 <div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.server
 </code></pre></div>
-            <p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application! </p>
-
-
-
-        </div>
-        <!-- /#page-wrapper -->
+<p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application! </p>
 
     </div>
-    <!-- /#wrapper -->
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
 
-<!-- jQuery -->
+  </body>
+
+  <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
 
 <!-- Bootstrap Core JavaScript -->
@@ -186,6 +182,4 @@
 <!-- Theme JavaScript -->
 <script src="/javascripts/creative.js"></script>
 
-
-  </body>
 </html>
