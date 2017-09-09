@@ -1,0 +1,314 @@
+---
+title: Elixir Girls Beginner's Guide
+---
+<h1>Elixir Beginner's Guide</h1>
+
+<h2>What is Elixir?</h2>
+<p>
+  Elixir is a functional programming language. It can be used to write any type of software, but is most commonly used to build servers, especially web server applications - the software systems that serve websites and provide mobile apps with data.
+</p>
+<p>
+  Being a functional language basically just means that the code written in Elixir passes all of the data needed for each function explicitly. Functions are usually connected to each other, with the output of one function being used as the input for another one. This is a bit different to how many other languages work, but it doesn't make Elixir any harder to write, in fact it makes reasoning about how a program works a lot easier, once you get the hang of thinking functionally!
+</p>
+<p>
+  Elixir was started by a well-known Ruby developer named José Valim (@josevalim on github and twitter) in 2011 in order to address some frustrations many developers have with Ruby. Because of this heritage, Elixir has a similar feel to Ruby, and most Ruby developers love Elixir just as much (or more!) than Ruby (and they LOOOOOOVE Ruby!) - ask your mentor, they are probably a Ruby developer, or have been in the past.
+</p>
+
+<h2>IEx: The Interactive Elixir Shell</h2>
+<p>
+  The easiest way to start writing Elixir is to use the interactive Elixir shell, IEx, which is a terminal-based application that allows you to enter Elixir expressions, which will then be evaluated and the output returned to you.
+</p>
+<p>
+  If you've followed one of our <a class="inline-link" href="/install-guides/">install guides</a>, starting IEx should be as simple as starting a terminal session, typing <code>iex</code>, and hitting return. You should see something like this:
+
+  <pre>
+~ ❯❯❯ iex
+Erlang/OTP 20 [erts-9.0] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false]
+
+Interactive Elixir (1.5.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)>
+  </pre>
+</p>
+<p>
+  If you're unsure about how to do this, or something goes wrong, grab a mentor; they'll be excited to show someone how to open their very first IEx session!
+</p>
+<p>
+  Remember, this is called IEx, short for Interactive Elixir ("ex" is a common shortening for all things Elixir related), so everything that work in the shell is legitimate Elixir code! The code samples in this guide show IEx sessions I'm doing as I write this guide. Be sure to follow along in your own session, and definitely try out your own ideas once you get the hang of each section.
+</p>
+
+<h2>Basic Data Types: Numbers, Strings, and Atoms</h2>
+<p>
+  Elixir provides a collection of data types to work with when writing your code. The most basic of these are different types of values. You'll find yourself writing code that mashes values of these types in a wide variety of ways, so let's get acquainted with them.
+</p>
+
+<h3>Numbers: Integers and Floats</h3>
+<p>
+  Although not the most basic data type in Elixir, numbers are right up there. They are represented just like numbers in the real world; they can be whole numbers (we call these <em>integers</em>), decimal numbers (<em>floats</em>), and if we want really big, or really small numbers, we can use scientific notation.
+</p>
+<p>
+  Let's look at some examples of number notations, and do some arithmetic with them:
+
+  <pre>
+iex(1)> 1
+1
+iex(2)> 234
+234
+iex(3)> 567_890_123
+567890123
+iex(4)> 3.14
+3.14
+iex(5)> 6.022e23
+6.022e23
+iex(6)> 1 + 2
+3
+iex(7)> 3 * 4
+12
+iex(8)> 1 + 2 * 3 / 4
+2.5
+iex(9)> (1 + 2) * (3 / 4)
+2.25
+iex(10)> 400_000_000 * 6.022e23
+2.4088e32
+  </pre>
+</p>
+<p>
+  As you can see, Elixir is capable of doing any arithmetic you might want it to do, and in fact can handle much, <strong>much</strong> larger numbers than we just tried out. Go ahead, see if you can flummox it!
+</p>
+<p>
+  One thing you might have noticed is that the number <code>567_890_123</code> equated to <code>567890123</code>; the underscores act just like commas in written numbers. This is a bit of what we call "syntactic sugar" - it's something Elixir provides just to make the numbers easier for developers to read numbers in their code. Thanks, Elixir!
+</p>
+
+<h3>Text: Strings</h3>
+<p>
+  Another common data type in Elixir is the <em>string</em>. A string is just a dev name for a piece of text, and is represented as a series of letters, spaces, punctuation symbols, and digits (<em>characters</em>).  Elixir strings also support unicode, which includes non-English character sets (like cyrillic, hiragana, and even emoji).
+
+  <pre>
+iex(1)> "Hello World!"
+"Hello World!"
+iex(2)> "Приветствую, мир"
+"Приветствую, мир"
+iex(3)> "こんにちは世界"
+"こんにちは世界"
+iex(4)> "👋 🌏"
+"👋 🌏"
+iex(5)> "Hello" <> " " <> "World!"
+"Hello World!"
+iex(6)> h = "Hello"
+"Hello"
+iex(7)> w = "World"
+"World"
+iex(8)> "#{h} #{w}!"
+"Hello World!"
+  </pre>
+</p>
+<p>
+ The fifth example in this snippet shows how we can add strings together (this is called <em>concatenation</em>) using the <code><></code> operator (similar to the <code>+</code> and <code>*</code> operators we saw for working with integers and floats above). We were also able to put some variables into a string using the <code>#{}</code> operator inside our quotes - this is called <em>string interpolation</em> and is a powerful tool for dynamically building strings.
+</p>
+
+<h3>Simple Values: Atoms</h3>
+<p>
+  Finally, we come to the most basic data type in Elixir: the <em>atom</em>. They are represented by a colon, followed by a name:
+
+  <pre>
+iex(1)> :an_atom
+:an_atom
+iex(2)> :ok
+:ok
+iex(3)> :"an atom name with spaces in it!"
+:"an atom name with spaces in it!"
+  </pre>
+</p>
+<p>
+  An atom is just a value. That's all! Just like <em>true</em> is a value, or <em>ok</em> is a value. Of course <em>true</em> and <em>ok</em> are words, but here we don't want to use them as text, so strings aren't what we want in this case. In fact, <em>true</em>, <em>false</em>, and <em>nil</em> are special values in elixir which are actually just atoms! (<em>nil</em> is a dev word which means <em>nothing</em>.)
+
+  <pre>
+iex(1)> :true
+true
+iex(2)> :false
+false
+iex(3)> :nil
+nil
+  </pre>
+</p>
+<p>
+  Atoms are perfect for using as very simple return values. It is <strong>very</strong> common to see atoms used as the return values of functions, for example:
+  <ul>
+    <li><code>:ok</code> is often returned when a function did what it was expected to do without any error, while <code>:error</code> is often to specify the opposite!</li>
+    <li><code>:true</code> and <code>:false</code> are returned from functions which test an assertion of some type, like checking if two values are equal (although the aliases <code>true</code> and <code>false</code> are usually what is put into the code instead because they are more explicit)</li>
+    <li><code>:nil</code> (aliased as <code>nil</code>) is the default result when a function returns nothing</li>
+  </ul>
+</p>
+
+<h2>Some (Slightly) More Complex Types</h2>
+<p>
+  On top of the basic data types, Elixir provides a number of <em>data structures</em> that can be used to combine data that are related to each other in some way.
+</p>
+
+<h3>Pairs, Triples, etc: Tuples</h3>
+<p>
+  Tuples are used to collect pieces of data that are directly related to each other. Tuples are represented as a series of values inside <em>braces</em> (sometimes called "curly brackets"):
+
+  <pre>
+iex(1)> {1, "one"}
+{1, "one"}
+iex(2)> {1, "one", :one}
+{1, "one", :one}
+iex(3)> {1, 2, 3, 4, 5}
+{1, 2, 3, 4, 5}
+iex(4)> {1}
+{1}
+iex(5)> {}
+{}
+  </pre>
+</p>
+<p>
+  Tuples are most often used to make pairs of data, for example relating the number <code>1</code> to the string <code>"one"</code> although as you can see, it is possible to have tuples with 3, 4, in fact any number of members. It is also possible to create tuples of size 1 or 0, however their utility is very limited.
+</p>
+<p>
+  Using a tuple makes it easy to send multiple pieces of data to a function, bundled together as a single item.
+</p>
+
+<h3>Items One by One: Lists</h3>
+<p>
+  Lists are used for data that aren't directly connected, but belong in a group together; similar to a shopping list in the real world. They are represented as a series of values inside <em>brackets</em> (sometimes called "square brackets"):
+
+  <pre>
+iex(1)> ["eggs", "milk", "freddo"]
+["eggs", "milk", "freddo"]
+iex(2)> ["eggs", 12, "milk", 2, "freddo", 77]
+["eggs", 12, "milk", 2, "freddo", 77]
+iex(3)> [{"eggs", 12}, {"milk", 2}, {"freddo", 77}]
+[{"eggs", 12}, {"milk", 2}, {"freddo", 77}]
+  </pre>
+</p>
+<p>
+  Members of lists can be of any type, including other more complex types (like tuples); they can even be of different types to one another, however it's more usual for them to be similar.
+</p>
+<p>
+  In the example, the first list makes sense - a list of strings representing items to get from the shop. The second list is still valid, but makes less sense to read - the item names and quantities are not grouped together, so getting a function to understand this list would be more difficult. The third list makes much more sense, using tuples to group item names with their quantities.
+</p>
+<p>
+  We could go a step further by adding units to the quantities where they make sense (what is 2 milks, anyways?!):
+
+  <pre>
+iex(4)> [{"eggs", {1, :dozen}}, {"milk", {2, :litre}}, {"freddo", 77}]
+  </pre>
+</p>
+<p>
+  Here we're nesting data structures to group things that are related, and list all of those things. This is very common for developers, in fact it is the first step many developers take to solving a problem!
+</p>
+<p>
+  You may have noticed that <code>"freddo"</code>'s quantity wasn't given a unit. This is because they are simply bought separately, and a unit makes no sense. This is just fine, because the quantity is still coupled to the name by a tuple, and Elixir provides us a way to deal with differently-shaped data with a powerful tool called <em>pattern matching</em> - we won't go into detail in this guide, but as you explore Elixir further, you will come to love it!
+</p>
+
+<h3>Looking Things Up: Maps</h3>
+<p>
+  Maps are data structures that allow you to assign a value to a key, so that given a key and a map, you can find the matching value. They are represent by braces, with a leading <code>%</code>, with key-value pairs listed inside:
+  <pre>
+iex(1)> number_words = %{1 => "one", 2 => "two"}
+%{1 => "one", 2 => "two", 3 => "three"}
+iex(2)> number_words[1]
+"one"
+iex(3)> number_words[2]
+"two"
+iex(3)> number_words[3]
+nil
+  </pre>
+</p>
+<p>
+  Keys and values of maps can both be any type (again, including nested data structures), and they can be mixed, however, again, it is usual that they are similar. When the keys of a map are all atoms, there's a more concise syntax that avoid using the "rocket" `=>`:
+
+  <pre>
+iex(1)> lists = %{shopping: [{"freddo", 77}], chores: ["laundry", "cook dinner", "eat all the freddos"]}
+%{chores: ["laundry", "cook dinner", "eat all the freddos"],
+  shopping: [{"freddo", 77}]}
+  </pre>
+</p>
+<p>
+  One thing to notice about maps is that unlike lists, they are not sorted, meaning they are not stored in the same order they are input. This is because in order to make looking up a value by key efficent, the ordering must be changed.
+</p>
+
+<h2>Using Functions</h2>
+<p>
+  Of course, being able to type values into IEx is fun and all, but data in programming is not much use at all unless we can <strong>do things</strong> with it. This is where <em>functions</em> come in.
+</p>
+<p>
+  In Elixir, functions are grouped into <em>modules</em>. Every module has a name that starts with a upper-case letter (e.g. <code>String</code>), and every function within that module has a name that starts with a lower-case letter (e.g. <code>reverse</code>).
+</p>
+<p>
+  In addition to belonging to a module, and having a name, every function also takes zero or more <em>arguments</em>, given as a list inside parentheses (e.g. <code>(argument1, argument2)</code>). Arguments are what are given to the function to do its work on.
+</p>
+<p>
+  Elixir provides a <em>standard library</em> which contains many modules of functions for use in developing projects. Included in this library are modules for all of the data types we've talked about, namely: <code>String</code>, <code>Integer</code>, <code>Float</code>, <code>Atom</code>, <code>Tuple</code>, <code>List</code>, and <code>Map</code>.
+</p>
+<p>
+  Let's have a look at some <code>String</code> functions in action.
+
+  <pre>
+ex(1)> String.reverse("Hello World!")
+"!dlroW olleH"
+iex(2)> String.reverse("Приветствую, мир")
+"рим ,юувтстевирП"
+iex(3)> String.reverse("Hannah")
+"hannaH"
+iex(4)> String.reverse("abcdefghijklmnopqrstuvwxyz")
+"zyxwvutsrqponmlkjihgfedcba"
+iex(5)> String.length("abcdefghijklmnopqrstuvwxyz")
+26
+  </pre>
+</p>
+<p>
+  Take some time to visit the <a class="inline-link" href="https://hexdocs.pm/elixir/String.html#summary">String documentation page</a> and try some of the functions listed there in IEx. If you need help at all, ask a mentor for more explanation.
+</p>
+
+<h2>Variables</h2>
+<p>
+  The vast majority of the time, you will not be working in IEx. You'll be writing code that will act not on values that you type in, but on values passed in by other functions. Furthermore, you'll be wanting to capture results of functions, and pass those values to other functions yourself!
+</p>
+<p>
+  This is where <em>variables</em> come in. Variables in your code provide a named place to store some value, which you can then pass to a function using that name.
+</p>
+<p>
+  We assign variables values using the <em>match</em> operator <code>=</code>:
+
+  <pre>
+iex(1)> our_first_variable = "This is the value of our first variable"
+"This is the value of our first variable"
+iex(2)> String.reverse(our_first_variable)
+"elbairav tsrif ruo fo eulav eht si sihT"
+iex(3)> our_first_variable
+"This is the value of our first variable"
+iex(4)> length_of_our_first_variable = String.length(our_first_variable)
+39
+iex(5)> length_of_our_first_variable / 3
+13.0
+  </pre>
+</p>
+<p>
+  As you can see, assigning a value to a variable makes it very easy to pass that same value to multiple functions if we want to, and doing so does not change the value we assigned.
+</p>
+<p>
+  We can also capture the result of a function in a variable, then use that variable in yet another function, as we did with <code>length_of_our_first_variable</code>.
+</p>
+
+<h3>A Special Helper</h3>
+<p>
+  Elixir provides us with another way of taking the result of one function, and using it as the first argument of another; the <em>pipe</em> operator <code>|></code>:
+
+  <pre>
+iex(1)> "This is the value of our first variable" |> String.length() |> Kernel.div(3)
+13
+  </pre>
+</p>
+<p>
+  Notice that even though <code>String.length</code> expects 1 argument, we've given it none, and similarly <code>Kernel.div</code> expects two, but we've only given it one. This is because the pipe operator takes the result of the expression to its left, and automatically puts it as the first argument of the function call to its right, so in our code we only need to provide the other required arguments; in the case of <code>String.length</code> no more are required, and for <code>Kernel.div</code> we just provide the divisor argument.
+</p>
+<p>
+  The pipe operator saves us the trouble of storing an intermediate value in a variable, and provides the functionality that is at the very heart of functional programming - that simple functions, chained together can transform data for us.
+</p>
+
+<h2>Where to Next?</h2>
+<p>
+  Now that you have a taste of elixir, it's time to head on to try out our other <a href="/guides/">guides</a>! Of course, you should continue to experiment with these Elixir basics, and be sure to ask a mentor for answers to any questions you may have, or for further information on anything you've seen in this guide. Have fun!
+</p>
+
