@@ -1,56 +1,39 @@
 ---
 title: Elixir Girls Guides Slackir App
+layout: guide
 ---
+<h1>Slackir</h1>
+<p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir! It's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippets through out these docs, if they beign with a "$"" then they are terminal commands and you do not need to copy the $ into the terminal.</p>
 
-<%= partial "/partials/guides-nav" %>
+<h2>Setting up Our App</h2>
+<p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
 
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <%= partial "/partials/guides-sidebar-nav" %>
-
-        <div id="page-wrapper">
-          <h1>Slackir</h1>
-            <p>Now that you have all of your development tools and dependencies installed you can start working on developing your first application Slackir! It's like Slack but in Elixir. Slackir will make the most of phoenix’s web sockets and evented programming. You will see different types of code snippets through out these docs, if they beign with a "$"" then they are terminal commands and you do not need to copy the $ into the terminal.</p>
-
-            <h2>Setting up Our App</h2>
-            <p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
-
-            <% code("bash") do %>
+<% code("bash") do %>
 $ mix phoenix.new slackir
-            <% end %>
+<% end %>
 
-            <p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
+<p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
 
-            <% code("bash") do %>
+<% code("bash") do %>
 $ cd slackir
-            <% end %>
+<% end %>
 
-            <p>Now we can install our applications dependencies by running</p>
+<p>Now we can install our applications dependencies by running</p>
 
-            <% code("bash") do %>
+<% code("bash") do %>
 $ npm install
-            <% end %>
+<% end %>
 
-            <p>and we can create our database by running</p>
+<p>and we can create our database by running</p>
 
-            <% code("bash") do %>
+<% code("bash") do %>
 $ mix ecto.create
-            <% end %>
+<% end %>
 
-            <p>To start the server you will need to run</p>
+<p>To start the server you will need to run</p>
 
-            <% code("bash") do %>
+<% code("bash") do %>
 $ mix phoenix.server
-            <% end %>
+<% end %>
 
-            <p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application! </p>
-
-
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
+<p>and go to <a href="http://127.0.0.1/4000" target="blank" class="inline-link">http://127.0.0.1/4000</a> to view your new application! </p>

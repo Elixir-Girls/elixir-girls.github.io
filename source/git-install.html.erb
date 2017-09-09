@@ -1,49 +1,33 @@
 ---
 title: Elixir Girls Installing Git
+layout: guide
 ---
+<h1>Git</h1>
+<p>Git is a widely used modern version control system and by far the most popular. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel. The name Git, which means unpleasant person in British English slang, came about because of Torvalds manner he has been cited as saying "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'." A staggering number of software projects rely on Git for version control, including commercial projects, as well as, open source including Elixir and Phoenix.</p>
 
-<%= partial "/partials/guides-nav" %>
+<p>Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software, as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.</p>
 
-<div id="wrapper">
+<p>In addition to being distributed, Git has been designed with performance, security and flexibility in mind.</p>
 
-        <!-- Navigation -->
-        <%= partial "/partials/guides-sidebar-nav" %>
-
-        <div id="page-wrapper">
-            <h1>Git</h1>
-            <p>Git is a widely used modern version control system and by far the most popular. Git is a mature, actively maintained open source project originally developed in 2005 by Linus Torvalds, the famous creator of the Linux operating system kernel. The name Git, which means unpleasant person in British English slang, came about because of Torvalds manner he has been cited as saying "I'm an egotistical bastard, and I name all my projects after myself. First 'Linux', now 'git'." A staggering number of software projects rely on Git for version control, including commercial projects, as well as, open source including Elixir and Phoenix.</p>
-
-            <p>Having a distributed architecture, Git is an example of a DVCS (hence Distributed Version Control System). Rather than have only one single place for the full version history of the software, as is common in once-popular version control systems like CVS or Subversion (also known as SVN), in Git, every developer's working copy of the code is also a repository that can contain the full history of all changes.</p>
-
-            <p>In addition to being distributed, Git has been designed with performance, security and flexibility in mind.</p>
-
-            <h2>Step 1 - Install Git</h2>
-            <h3>Mac</h3>
-            <p>Type this in the terminal:</p>
-            <% code("bash") do %>
+<h2>Step 1 - Install Git</h2>
+<h3>Mac</h3>
+<p>Type this in the terminal:</p>
+<% code("bash") do %>
 git --version
-            <% end %>
-            <p>If this returns a version number then you can skip this section, if not, you will need to install git by running:</p>
-            <% code("bash") do %>
+<% end %>
+<p>If this returns a version number then you can skip this section, if not, you will need to install git by running:</p>
+<% code("bash") do %>
 brew install git
-            <% end %>
+<% end %>
 
-            <h3>Windows</h3>
-            <p>Go to <a href="https://git-scm.com/download/win" target="blank" class="inline-link">git-scm.com/download/win</a> and download the Windows installer. Run the executable and choose the default options.
+<h3>Windows</h3>
+<p>Go to <a href="https://git-scm.com/download/win" target="blank" class="inline-link">git-scm.com/download/win</a> and download the Windows installer. Run the executable and choose the default options.
 
-            <h2>Step 2 - Configure Git</h2>
-            <% code("bash") do %>
+<h2>Step 2 - Configure Git</h2>
+<% code("bash") do %>
 git config --global user.name "Your Actual Name"
 git config --global user.email "Your Actual Email"
-            <% end %>
+<% end %>
 
-            <h2>Step 3 - Create a Github account</h2>
-            <p>If you don't already have a Github account you will need to set one up if you want to deploy you application. It's free and only takes a couple of minutes please go to <a href="https://github.com" target="blank" class="inline-link">github.com</a></p>
-
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
+<h2>Step 3 - Create a Github account</h2>
+<p>If you don't already have a Github account you will need to set one up if you want to deploy you application. It's free and only takes a couple of minutes please go to <a href="https://github.com" target="blank" class="inline-link">github.com</a></p>
