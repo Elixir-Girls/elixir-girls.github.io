@@ -1,0 +1,158 @@
+---
+title: Elixir Girls Beginner's Guide
+---
+
+<%= partial "partials/guides-nav" %>
+
+<div id="wrapper">
+  <!-- Navigation -->
+  <%= partial "partials/guides-sidebar-nav" %>
+  <div id="page-wrapper">
+    <h1>Elixir Beginner's Guide</h1>
+
+    <h2>What is Elixir?</h2>
+      <p>
+        Elixir is a functional programming language. It can be used to write any type of software, but is most commonly used to build servers, especially web server applications - the software systems that serve websites and provide mobile apps with data.
+      </p>
+      <p>
+        Being a functional language basically just means that the code written in Elixir passes all of the data needed for each function explicitly. Functions are usually connected to each other, with the output of one function being used as the input for another one. This is a bit different to how many other languages work, but it doesn't make Elixir any harder to write, in fact it makes reasoning about how a program works a lot easier, once you get the hang of thinking functionally!
+      </p>
+      <p>
+        Elixir was started by a well-known Ruby developer named José Valim (@josevalim on github and twitter) in 2011 in order to address some frustrations many developers have with Ruby. Because of this heritage, Elixir has a similar feel to Ruby, and most Ruby developers love Elixir just as much (or more!) than Ruby (and they LOOOOOOVE Ruby!) - ask your mentor, they are probably a Ruby developer, or have been in the past.
+      </p>
+
+    <h2>IEx: The Interactive Elixir Shell</h2>
+    <p>
+      The easiest way to start writing Elixir is to start the interactive Elixir shell, IEx, which is a terminal-based application that allows you to enter Elixir expressions, which will then be evaluated and the output returned to you.
+    </p>
+    <p>
+      If you've followed one of our <a href="/install-guides/">install guides</a>, starting IEx should be as simple as starting a terminal session, typing <code>iex</code>, and hitting return. You should see something like this:
+
+      <pre>
+~ ❯❯❯ iex
+Erlang/OTP 20 [erts-9.0] [source] [64-bit] [smp:4:4] [ds:4:4:10] [async-threads:10] [hipe] [kernel-poll:false]
+
+Interactive Elixir (1.5.1) - press Ctrl+C to exit (type h() ENTER for help)
+iex(1)>
+      </pre>
+
+      If you're unsure about how to do this, or something goes wrong, grab a mentor; they'll be excited to show someone how to open their very first IEx session!
+    </p>
+
+    <h3>Trying out Elixir in IEx</h3>
+    <p>
+      Let's try a few things out. Remember, this is called IEx, short for Interactive Elixir ("ex" is a common shortening for all things Elixir related), so everything that work in the shell is legitimate Elixir code! The code samples below show an IEx session I'm doing as I write this guide. Follow along in your own session, and be sure to try out your own ideas once you get the hang of it; there's no chance of anything breaking if you something untoward happens.
+    </p>
+
+    <p>
+      Let's start with some arithmetic:
+      
+      <pre>
+ex(1)> 1 + 1
+2
+iex(2)> 7 * 9
+63
+iex(3)> 1 + 7 * 9
+64
+iex(4)> 1 + (7 * 9)
+64
+iex(5)> (1 + 7) * 9
+72
+iex(6)> 123456789 * 987654321
+121932631112635269
+iex(7)> 123_456_789 * 987_654_321
+121932631112635269
+iex(8)> 888 / 444
+2.0
+iex(9)> 888 / 777
+1.1428571428571428
+      </pre>
+    </p>
+    <p>
+      As you can see, Elixir is capable of doing any arithmetic you might want it to do, and in fact can handle much, <strong>much</strong> larger numbers than we just tried out. Go ahead, see if you can flummox it!
+    </p>
+    <p>
+      One thing you might have noticed is that the numbers <code>123456789</code> and <code>123_456_789</code> behave exactly the same; the underscores act just like commas. This is a bit of what we call "syntactic sugar" - it's something Elixir provides just to make the numbers easier for developers to read. Thanks, Elixir!
+    </p>
+    <p>
+      Elixir is also pretty good at string manipulation. A string is just a dev name for a series of letters - actually, spaces, punctuation symbols, and digits are all valid members of strings, too:
+
+      <pre>
+iex(10)> "This is a string!"
+"This is a string!"
+iex(11)> "This is" <> " two strings joined together."
+"This is two strings joined together."
+iex(12)> String.length("How long is a ... string?")
+25
+iex(13)> String.reverse("What is Elixir spelled backwards?")
+"?sdrawkcab delleps rixilE si tahW"
+iex(14)> String.reverse("Egad, a base life defiles a bad age.")
+".ega dab a selifed efil esab a ,dagE"
+iex(15)> h String.reverse
+
+                              def reverse(string)
+
+Reverses the graphemes in given string.
+
+## Examples
+
+    iex> String.reverse("abcd")
+    "dcba"
+
+    iex> String.reverse("hello world")
+    "dlrow olleh"
+
+    iex> String.reverse("hello ∂og")
+    "go∂ olleh"
+
+Keep in mind reversing the same string twice does not necessarily yield the
+original string:
+
+    iex> "̀e"
+    "̀e"
+    iex> String.reverse("̀e")
+    "è"
+    iex> String.reverse String.reverse("̀e")
+    "è"
+
+In the first example the accent is before the vowel, so it is considered two
+graphemes. However, when you reverse it once, you have the vowel followed by
+the accent, which becomes one grapheme. Reversing it again will keep it as one
+single grapheme.
+      </pre>
+    </p>
+    <p>
+      So, a string in elixir is represented by a series of characters between quotation marks. We can add strings together (concatenation) using the <code><></code> operator (<code>+</code> and <code>*</code> were other operators we saw above), and we can find out how long a string is, and what the reverse of a string is using functions.
+    </p>
+    <p>
+      <code>String.length/1</code> and <code>String.reverse/1</code> are two functions in the <code>String</code> module. The <code>/1</code>s in these names mean that these functions take one argument, and yep, you guessed it, that argument is a string! These two functions do exactly what they sound like they do - the Elixir team are very good at naming functions.
+    </p>
+    <p>
+      The last thing we did in that chunk of our session was to use an IEx built in function, <code>h/1</code> to get more information on the <code>String.reverse/1</code> function. <code>h</code> stands for "help"; given a function name (it works on modules too), it will print out the documentation for that function. <code>h/1</code> is an invaluable tool in finding out about the modules and functions that come with Elixir, and the Elixir team are always very careful to provide helpful documentation. Try inputting <code>h String</code> to read what they have to say about the <code>String</code> module in general. You can even try <code>h h</code> to see what they say about the <code>h</code> function!!
+    </p>
+    <h2>Modules and Functions</h2>
+    <h2>The Standard Library</h2>
+    <h2>Mix and Elixir Projects</h2>
+    <h2>Mix Tasks</h2>
+    <h2>External Packages</h2>
+    <h2>Star Wars Character Search!</h2>
+    <h2>Resources for Learning</h2>
+  </div>
+  <!-- /#page-wrapper -->
+</div>
+<!-- /#wrapper -->
+
+<!-- jQuery -->
+<script src="vendor/jquery/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="javascripts/creative.js"></script>
+<script src="javascripts/sidebar.js"></script>
