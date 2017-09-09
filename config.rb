@@ -73,3 +73,4 @@ configure :build do
 end
 
 activate :syntax
+activate :emoji
