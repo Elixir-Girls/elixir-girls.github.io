@@ -1,0 +1,12 @@
+<% wrap_layout :layout do %>
+  <%= partial "/partials/guides-nav" %>
+  <div id="wrapper">
+    <!-- Navigation -->
+    <%= partial "/partials/guides-sidebar-nav" %>
+    <div id="page-wrapper">
+      <%= yield %>
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+<% end %>

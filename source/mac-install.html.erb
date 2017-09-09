@@ -1,96 +1,80 @@
 ---
 title: Elixir Girls Guides Installing on Mac OSX
+layout: guide
 ---
+<h1>Mac OSX setup</h1>
+<p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatible version of OSX. Click on the Apple icon in the top left of your screen and select “About This Mac” to check. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are all set to proceed to the next step if not you will need to upgrade.</p>
 
-<%= partial "/partials/guides-nav" %>
+<h2>Step 1- Install Xcode Command Line tools</h2>
+<p>Open Iterm or your terminal application of choice. Enter the following command to check if you already have xcode installed</p>
 
-<div id="wrapper">
-
-        <!-- Navigation -->
-        <%= partial "/partials/guides-sidebar-nav" %>
-
-        <div id="page-wrapper">
-            <h1>Mac OSX setup</h1>
-            <p>Before you proceed with installing the dependencies for Elixir and Phoenix you will need to make sure you are running a compatible version of OSX. Click on the Apple icon in the top left of your screen and select “About This Mac” to check. In the window that comes up, under the title “OS X” there will be a version number. If you are running 10.9 or above you are all set to proceed to the next step if not you will need to upgrade.</p>
-
-            <h2>Step 1- Install Xcode Command Line tools</h2>
-            <p>Open Iterm or your terminal application of choice. Enter the following command to check if you already have xcode installed</p>
-
-            <% code("bash") do %>
+<% code("bash") do %>
 gcc --version
-            <% end %>
+<% end %>
 
-            <p>If you see a similar output to below then you already have xcode installed and you can move on to step two.</p>
-            <% code("bash") do %>
+<p>If you see a similar output to below then you already have xcode installed and you can move on to step two.</p>
+<% code("bash") do %>
 Catherines-MacBook-Pro:~ BitGirl$ gcc --version
 Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/usr/include/c++/4.2.1
 Apple LLVM version 8.1.0 (clang-802.0.42)
 Target: x86_64-apple-darwin16.6.0
 Thread model: posix
 InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
-            <% end %>
+<% end %>
 
-            <p>To install xcode run the following command</p>
-            <% code("bash") do %>
+<p>To install xcode run the following command</p>
+<% code("bash") do %>
 xcode-select --install
-            <% end %>
+<% end %>
 
-            <p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
+<p>When the download is complete you will see the program open up and ask if you want to install xcode. Click install</p>
 
-            <h2>Step 2- Install Homebrew</h2>
-            <p>To check if you have Homebrew installed run</p>
-            <% code("bash") do %>
+<h2>Step 2- Install Homebrew</h2>
+<p>To check if you have Homebrew installed run</p>
+<% code("bash") do %>
 brew -v
-            <% end %>
-            <p>If that command returned a version number then you already have Homebrew installed. If you want to update to the latest version run the following command: </p>
-            <% code("bash") do %>
+<% end %>
+<p>If that command returned a version number then you already have Homebrew installed. If you want to update to the latest version run the following command: </p>
+<% code("bash") do %>
 brew update
-            <% end %>
-            <p>If that command returned an error then you will need to install Homebrew by running:</p>
-            <% code("bash") do %>
+<% end %>
+<p>If that command returned an error then you will need to install Homebrew by running:</p>
+<% code("bash") do %>
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-            <% end %>
-            <p>You may be prompted for your user's password</p>
+<% end %>
+<p>You may be prompted for your user's password</p>
 
-            <h2>Step 3 - Install Postgres</h2>
-            <p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
-            <% code("bash") do %>
+<h2>Step 3 - Install Postgres</h2>
+<p>Postgres is the type of database that we will be using for our application. To install run the following:</p>
+<% code("bash") do %>
 brew install postgres
 initdb /usr/local/var/postgres -E utf8
-            <% end %>
-            <p>Now you will need to create a user for your Database</p>
-            <% code("bash") do %>
+<% end %>
+<p>Now you will need to create a user for your Database</p>
+<% code("bash") do %>
 createuser -s postgres
-            <% end %>
-            <% code("bash") do %>
+<% end %>
+<% code("bash") do %>
 brew services start postgresql
-            <% end %>
+<% end %>
 
-            <h2>Step 4 - Install Elixir</h2>
-            <% code("bash") do %>
+<h2>Step 4 - Install Elixir</h2>
+<% code("bash") do %>
 brew install erlang elixir
-            <% end %>
+<% end %>
 
-            <h2>Step 5 - Install Node</h2>
-            <% code("bash") do %>
+<h2>Step 5 - Install Node</h2>
+<% code("bash") do %>
 brew install node
-            <% end %>
+<% end %>
 
-            <h2>Step 6 - Install Phoenix</h2>
-            <p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
-            <% code("bash") do %>
+<h2>Step 6 - Install Phoenix</h2>
+<p>Since we have just installed Elixir for the first time, we will need to install the Hex package manager as well. Hex is necessary to get a Phoenix app running (by installing dependencies) and to install any extra dependencies we might need along the way.</p>
+<% code("bash") do %>
 mix local.hex
-            <% end %>
-            <p>Now that we have Hex installed we can install Phoenix</p>
-              <% code("bash") do %>
+<% end %>
+<p>Now that we have Hex installed we can install Phoenix</p>
+<% code("bash") do %>
 mix archive.install https://github.com/phoenixframework/archives/raw/master/phoenix_new.ez
-              <% end %>
-            <p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
-
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
-    <!-- /#wrapper -->
-
-<%= partial "/partials/scripts" %>
+<% end %>
+<p>If you haven't coded before you will want to take a look at <a class="inline-link" href="/dev-tools.html">additional tools</a> for some extra tools that will help you get started otherwise we're good to go! Let's go write some elixir!</p>
