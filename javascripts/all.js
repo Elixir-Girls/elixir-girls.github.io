@@ -63,4 +63,8 @@
 
 })(jQuery); // End of use strict
 ;
-
+$(document).ready(function(){
+  $("a#dropdown-menu").click(function(){
+      $("ul.nav-second-level").toggle();
+  });
+});

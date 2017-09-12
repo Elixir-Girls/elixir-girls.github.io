@@ -9,7 +9,6 @@
     <title>Elixir Girls Guides to Installing Elixir</title>
 
     <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
-    <script src="/javascripts/all.js"></script>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,19 +100,21 @@
     <!-- /.navbar-top-links -->
 
     <div class="navbar-default sidebar" role="navigation">
-        <div class="sidebar-nav navbar-collapse">
-            <ul class="nav" id="side-menu">
+        <div class="sidebar-nav">
+            <ul class="nav" id="side-menu nav">
                 <li>
-                    <a href="/install-guides/mac.html">Mac</a>
-                </li>
-                <li>
-                    <a href="/install-guides/windows.html">Windows</a>
-                </li>
-                <li>
-                    <a href="/install-guides/linux.html">Linux</a>
-                </li>
-                <li>
-                    <a href="/install-guides/git.html">Install Git</a>
+                    <a id="dropdown-menu" href="#">Installation</a>
+                    <ul class="nav nav-second-level">
+                      <li>
+                          <a href="/install-guides/mac.html">Mac</a>
+                      </li>
+                      <li>
+                          <a href="/install-guides/windows.html">Windows</a>
+                      </li>
+                      <li>
+                          <a href="/install-guides/linux.html">Linux</a>
+                      </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/install-guides/dev-tools.html">Additional Tools</a>
@@ -156,7 +157,6 @@
 
   <!-- jQuery -->
 <script src="/vendor/jquery/jquery.min.js"></script>
-
 <!-- Bootstrap Core JavaScript -->
 <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
 
@@ -167,5 +167,6 @@
 
 <!-- Theme JavaScript -->
 <script src="/javascripts/creative.js"></script>
+<script src="/javascripts/all.js"></script>
 
 </html>
