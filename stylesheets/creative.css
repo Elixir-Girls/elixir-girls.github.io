@@ -519,3 +519,7 @@ a.inline-link {
 ul.nav-second-level {
   display: none;
 }
+#sponsors h3 {
+  font-weight: 700;
+  color: #634a6d;
+}
