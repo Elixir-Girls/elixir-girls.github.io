@@ -445,6 +445,16 @@ iex(1)> "This is the value of our first variable" |> String.length() |> Kernel.d
   The pipe operator saves us the trouble of storing an intermediate value in a variable, and provides the functionality that is at the very heart of functional programming - that simple functions, chained together can transform data for us.
 </p>
 
+<p>
+  For extra fun, if you want to see how the intermediate value is evaluated (but still not store it in a variable), you can use `IO.inspect`. This is like adding a console log to your pipe operator, and allows you to see what's happening to your data as it passes through the pipe. For example:
+</p>
+
+  <pre>
+iex(1)> "This is the value of our first variable" |> String.length() |> IO.inspect |> Kernel.div(3)
+39
+13
+  </pre>
+
 <h2>Where to Next?</h2>
 <p>
   Now that you have a taste of elixir, it's time to head on to try out our other <a class="inline-link" href="/guides/">guides</a>! Of course, you should continue to experiment with these Elixir basics, and be sure to ask a mentor for answers to any questions you may have, or for further information on anything you've seen in this guide. Have fun!
