@@ -230,23 +230,6 @@
   <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"ok"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Joined successfully"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
   <span class="p">.</span><span class="nx">receive</span><span class="p">(</span><span class="s2">"error"</span><span class="p">,</span> <span class="nx">resp</span> <span class="o">=&gt;</span> <span class="p">{</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"Unable to join"</span><span class="p">,</span> <span class="nx">resp</span><span class="p">)</span> <span class="p">})</span>
 </code></pre></div>
-<p>
-In web/channels/user_socket.ex we need to define the server-side component of the channel.
-</p>
-
-<p>
-Find a line that looks like this:
-</p>
-
-<div class="highlight"><pre class="highlight elixir"><code>  <span class="n">channel</span> <span class="sd">"</span><span class="s2">room:*"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RoomChannel</span>
-</code></pre></div>
-<p>
-and edit it to look like this:
-</p>
-
-<div class="highlight"><pre class="highlight elixir"><code>  <span class="n">channel</span> <span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">RandomChannel</span>
-</code></pre></div></p>
-
 <p>socket.channel("random:lobby", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
 
 <p>Next we will want to create the container for our messages: Open web/templates/page/index.html.eex, and replace its contents with:</p>
