@@ -51,10 +51,8 @@ initdb /usr/local/var/postgres -E utf8
 <% end %>
 <p>Now you will need to create a user for your Database</p>
 <% code("bash") do %>
-createuser -s postgres
-<% end %>
-<% code("bash") do %>
 brew services start postgresql
+createuser -s postgres
 <% end %>
 
 <h2>Step 4 - Install Elixir</h2>
