@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Always force latest IE rendering engine or request Chrome Frame -->
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+    <!-- Use title if it's in the page YAML frontmatter -->
+    <title>Elixir Girls Guides Slackir App retrieving stored data</title>
+
+    <link href="/stylesheets/normalize.css" rel="stylesheet" /><link href="/stylesheets/all.css" rel="stylesheet" />
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Elixir Girls website">
+    <meta name="author" content="Cath Jones">
+
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Elixir Girls" />
+    <meta property="og:type" content="event" />
+    <meta property="og:url" content="http://elixirgirls.com" />
+    <meta property="og:image" content="http://elixirgirls.com/img/header.jpg" />
+    <meta property="og:description" content="Our aim is to make technology more approachable by creating a fun and friendly environment for people to come together and learn about Elixir, Phoenix and Functional Programming" />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="/vendor/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="/stylesheets/creative.css" rel="stylesheet">
+    <link href="/stylesheets/highlighting.css" rel="stylesheet" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+  <body class="guides guides_retrieve_message_history">
+      <nav id="mainNav" class="navbar navbar-default navbar-fixed-top guide-nav-bar">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="/#page-top">Elixir Girls</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a class="page-scroll" href="/#about">About</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#events">Events</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/guides/">Guides</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#sponsors">Sponsors</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+  <div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">Elixir Girls Guides</a>
+    </div>
+    <!-- /.navbar-header -->
+
+    <!-- /.navbar-top-links -->
+
+    <div class="navbar-default sidebar" role="navigation">
+        <div class="sidebar-nav">
+            <ul class="nav" id="side-menu nav">
+                <li>
+                    <a id="dropdown-menu" href="#">Installation</a>
+                    <ul class="nav nav-second-level">
+                      <li>
+                          <a href="/install-guides/mac.html">Mac</a>
+                      </li>
+                      <li>
+                          <a href="/install-guides/windows.html">Windows</a>
+                      </li>
+                      <li>
+                          <a href="/install-guides/linux.html">Linux</a>
+                      </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/install-guides/dev-tools.html">Additional Tools</a>
+                </li>
+                <li>
+                  <a href="/guides/elixir-beginners-guide.html">Beginner's Guide</a>
+                </li>
+                <li>
+                    <a href="/guides/slackir.html">Slackir App</a>
+                </li>
+                <li>
+                    <a href="/guides/channels.html">Channels</a>
+                </li>
+                <li>
+                    <a href="/guides/persistence.html">Persistence</a>
+                </li>
+                <li>
+                    <a href="/guides/version-control-git.html">Version Control (Git)</a>
+                </li>
+                <li>
+                    <a href="/guides/deploy-on-heroku.html">Deploy on Heroku</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.sidebar-collapse -->
+    </div>
+    <!-- /.navbar-static-side -->
+</nav>
+
+    <div id="page-wrapper">
+      <h1>Retrieving from database</h1>
+  <p> Note: we are going to be adding all these code into <em>web/channels/random_channel.ex</em> </p>
+  <p>Everytime when you refresh your page, you lose the message history and that is not ideal if you want to know what has been discussed.
+  We have all these stored messages in our database, and we want to retrieve it when someone logs in. Therefore, we will need to retrieve these messages and display them in the chat dialog.</p>
+  <h2>Perform a callback after join</h2>
+  <p>Go to the <strong>join</strong> function, and add the line just below <strong>if authorized?(payload) do</strong></p>
+  <p>We are going to send a message contaning our self PID(Process Identifier) as the first parameter. The second parameter is a message to run a function called <em> after_join </em>. This function is identified by an atom type.</p>
+
+<div class="highlight"><pre class="highlight elixir"><code>  <span class="k">def</span> <span class="n">join</span><span class="p">(</span><span class="sd">"</span><span class="s2">random:lobby"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+    <span class="k">if</span> <span class="n">authorized?</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="k">do</span>
+      <span class="n">send</span> <span class="n">self</span><span class="p">(),</span> <span class="ss">:after_join</span> <span class="c1">#&lt;-- Add this line</span>
+      <span class="p">{</span><span class="ss">:ok</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
+    <span class="k">else</span>
+      <span class="p">{</span><span class="ss">:error</span><span class="p">,</span> <span class="p">%{</span><span class="ss">reason:</span> <span class="sd">"</span><span class="s2">unauthorized"</span><span class="p">}}</span>
+    <span class="k">end</span>
+  <span class="k">end</span>
+</code></pre></div>
+<h4>What does send do?</h4>
+<p><strong>send</strong> sends a message,<strong>:after_join</strong>, with it's PID generated by the function ,<strong>self()</strong>. We want to be able to run the after join task asynchronously. Lets look at how we should receive the <em>:after_join</em> message</p>
+<h1>Receiving a message in a callback</h1>
+<p>We now know that a message identified by the atom <em>:after_join</em> is being sent.
+Phoenix provides us with a function called <strong>handle_info</strong> to be able to receive that message and do something with it.
+Insert the following code after the <em>join</em> function </p>
+<div class="highlight"><pre class="highlight elixir"><code>  <span class="k">def</span> <span class="n">handle_info</span><span class="p">(</span><span class="ss">:after_join</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+    <span class="n">messages</span> <span class="o">=</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">)</span>
+    <span class="n">msgs</span> <span class="o">=</span>
+      <span class="n">messages</span> <span class="o">|&gt;</span> <span class="no">Enum</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="o">&amp;</span><span class="n">to_msg</span><span class="o">/</span><span class="m">1</span><span class="p">)</span>
+
+    <span class="n">push</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">messages_history"</span><span class="p">,</span> <span class="p">%{</span> <span class="ss">messages:</span> <span class="n">msgs</span> <span class="p">}</span>
+    <span class="p">{</span> <span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span> <span class="p">}</span>
+  <span class="k">end</span>
+
+  <span class="k">defp</span> <span class="n">to_msg</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span> <span class="k">do</span>
+    <span class="p">%{</span>
+      <span class="ss">name:</span> <span class="n">msg</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+      <span class="ss">message:</span> <span class="n">msg</span><span class="o">.</span><span class="n">message</span>
+    <span class="p">}</span>
+  <span class="k">end</span>
+</code></pre></div>
+  <h1>Retrieving all messages from our database</h2>
+  <p>Phew, that looked like a lot is going on in the handle_info function. Lets breakdown the code to understand what is going on.</p>
+  <p>
+    As we have seen previously, Slackir.Repo provides us with an interface to communicate to the database. Rather than doing an insert!, we want to use the <strong>all</strong>
+    function to retrieve all the messages from our database.
+  </p>
+  <p>
+    We then, pipe the retrieved <em>messages</em> into a <strong>map</strong> function provided by the <strong>Enum</strong> module.
+    <em>Map</em> applies the <strong>to_msg</strong> function onto every element in <em>messages</em>
+  </p>
+  <p><em>Note: Please ask your mentor to explain how Enum.map works if you are unsure about it :)</em></p>
+  <p>
+    There is of course the & operator that is used as a shorthand to convert the expression into a function.
+    All this does is convert <em>to_msg</em> into a function that takes only 1 parameter(arity), which is defined as a private method.
+    Private methods in Elixir are identified by a <em>p</em> at the end of the word <em>def</em>
+    We are trying to format the messages that we have retrieved into a proper structure
+  </p>
+  <h1>Passing the messages back to the browser</h1>
+  <p>Finally, we want to push our list of messages to the socket via the <strong>push</strong> function.</p>
+  <p>We are using <em>push</em> instead of <em>broadcast</em>, because we only want to display it to the current user that has just joined the channel</P>
+
+  <h1>Render the messages in the browser</h1>
+  <p>Add the below code to the <em>web/static/js/socket.js</em> file</p>
+<div class="highlight"><pre class="highlight javascript"><code>    <span class="nx">channel</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">'messages_history'</span><span class="p">,</span> <span class="nx">messages</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="kd">let</span> <span class="nx">messages_list</span> <span class="o">=</span> <span class="nx">messages</span><span class="p">[</span><span class="s2">"messages"</span><span class="p">];</span>
+
+      <span class="nx">messages_list</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span> <span class="kd">function</span><span class="p">(</span><span class="nx">msg</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">list</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="s2">`&lt;b&gt;</span><span class="p">${</span><span class="nx">msg</span><span class="p">[</span><span class="s2">"name"</span><span class="p">]</span> <span class="o">||</span> <span class="s1">'Anonymous'</span><span class="p">}</span><span class="s2">:&lt;/b&gt; </span><span class="p">${</span><span class="nx">msg</span><span class="p">[</span><span class="s2">"message"</span><span class="p">]}</span><span class="s2">&lt;br&gt;`</span><span class="p">);</span>
+        <span class="nx">list</span><span class="p">.</span><span class="nx">prop</span><span class="p">({</span><span class="na">scrollTop</span><span class="p">:</span> <span class="nx">list</span><span class="p">.</span><span class="nx">prop</span><span class="p">(</span><span class="s2">"scrollHeight"</span><span class="p">)});</span>
+      <span class="p">});</span>
+    <span class="p">});</span>
+</code></pre></div>  <p>This is the final step, really. We need display the messages in our browser by iterating through our list
+  You should have the history of messages displayed to you when you join the channel. Try opening multiple tabs connecting to http://127.0.0.1/4000
+  <p>You will be able to see that all the messages gets rendered everytime you join</p>
+
+    </div>
+    <!-- /#page-wrapper -->
+  </div>
+  <!-- /#wrapper -->
+
+  </body>
+
+  <!-- jQuery -->
+<script src="/vendor/jquery/jquery.min.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+<script src="/vendor/scrollreveal/scrollreveal.min.js"></script>
+<script src="/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="/javascripts/creative.js"></script>
+<script src="/javascripts/all.js"></script>
+
+</html>

@@ -134,6 +134,9 @@
                 <li>
                     <a href="/guides/version-control-git.html">Version Control (Git)</a>
                 </li>
+                <li>
+                    <a href="/guides/deploy-on-heroku.html">Deploy on Heroku</a>
+                </li>
             </ul>
         </div>
         <!-- /.sidebar-collapse -->
@@ -177,8 +180,8 @@ InstalledDir: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault
 <div class="highlight"><pre class="highlight shell"><code>brew install postgres
 initdb /usr/local/var/postgres <span class="nt">-E</span> utf8
 </code></pre></div><p>Now you will need to create a user for your Database</p>
-<div class="highlight"><pre class="highlight shell"><code>createuser <span class="nt">-s</span> postgres
-</code></pre></div><div class="highlight"><pre class="highlight shell"><code>brew services start postgresql
+<div class="highlight"><pre class="highlight shell"><code>brew services start postgresql
+createuser <span class="nt">-s</span> postgres
 </code></pre></div>
 <h2>Step 4 - Install Elixir</h2>
 <div class="highlight"><pre class="highlight shell"><code>brew install erlang elixir
