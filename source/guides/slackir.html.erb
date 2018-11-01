@@ -8,7 +8,7 @@ title: Elixir Girls Guides Slackir App
 <p>The first thing that we want to do is create our Phoenix app. We do this with the following command and we'll pass in "slackir" as the name of our app.</p>
 
 <% code("bash") do %>
-$ mix phoenix.new slackir
+$ mix phx.new slackir
 <% end %>
 
 <p>The next step is to move into our newly created application. To do that run the following command to change the directory.</p>
@@ -32,7 +32,39 @@ $ mix ecto.create
 <p>To start the server you will need to run</p>
 
 <% code("bash") do %>
-$ mix phoenix.server
+$ mix phx.server
 <% end %>
 
-<p>and go to <a href="http://127.0.0.1:4000" target="blank" class="inline-link">http://127.0.0.1:4000</a> to view your new application! </p>
+<p>If server doesn't start, probably you need to add <code>:plug_cowboy</code> dependency in <code>mix.exs</code> file.</p>
+
+<p>Add this <code>{:plug_cowboy, "~> 1.0"}</code> in the bottom list of dependencies. The list should look like that:</p>
+
+<% code("elixir") do %>
+defp deps do
+  [
+    {:phoenix, "~> 1.3.4"},
+    {:phoenix_pubsub, "~> 1.0"},
+    {:phoenix_ecto, "~> 3.2"},
+    {:postgrex, ">= 0.0.0"},
+    {:phoenix_html, "~> 2.10"},
+    {:phoenix_live_reload, "~> 1.0", only: :dev},
+    {:gettext, "~> 0.11"},
+    {:cowboy, "~> 1.0"},
+    {:plug_cowboy, "~> 1.0"}
+  ]
+end
+<% end %>
+
+<p>In order to install newly added dependencie run</p>
+
+<% code("bash") do %>
+$ mix deps.get
+<% end %>
+
+<p>Then again run serwer</p>
+
+<% code("bash") do %>
+$ mix phx.start
+<% end %>
+
+<p>and go to <a href="http://127.0.0.1:4000" target="blank" class="inline-link">http://127.0.0.1:4000</a> to view your new application!</p><br>

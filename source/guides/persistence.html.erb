@@ -5,38 +5,47 @@ title: Elixir Girls Guides Slackir App adding persistence
 <p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
 
 <h2>Creating our Database</h2>
-<p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
+
+<p>First, we’ll create a migration and some code to handle persistence. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke <code>mix phx.gen.context</code> from the terminal to generate a context with functions, schema and migration:</p>
 
 <% code("bash") do %>
-$ mix phoenix.gen.model Message messages name:string message:string
+$ mix phx.gen.context Conversations Message messages name:string message:string
+<% end %>
+
+<p>Explanation on that command:</p>
+<ul>
+  <li><b>Context: </b><code>Conversations</code> - The context is an Elixir module that serves as an boundary for the given
+resources like messages. A context often holds many related resources.</li>
+  <li><b>Schema: </b><code>Message</code> - The schema is responsible for mapping the database fields into an Elixir struct.</li>
+  <li><b>Schema table: </b><code>messages</code> - The schema table is just a schema plural name for table in database.</li>
+  <li><b>Fields </b><code>name:string</code> and <code>message:string</code>- The fields are columns in database table where <code>message</code> is a filed name and <code>string</code> is field type in <code>message:string</code>.</li>
+</ul>
+
+<p>Then run the migration:</p>
+
+<% code("bash") do %>
 $ mix ecto.migrate
 <% end %>
 
 <h2>Creating our messages in the Database</h2>
-<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In <code>lib/slackir_web/channels/random_channel.ex</code>, we can add a call to do it, so the <code>handle_in</code> method looks like this:</p>
 
 <% code("elixir") do %>
-def handle_in("shout", message, socket) do
-  Slackir.Message.changeset(%Slackir.Message{}, message)
-  |> Slackir.Repo.insert
-  broadcast! socket, "shout", message
+def handle_in("shout", payload, socket) do
+  Slackir.Conversations.create_message(payload)
+  broadcast socket, "shout", payload
   {:noreply, socket}
 end
 <% end %>
 
 <h2>Refactor</h2>
-<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
+<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, <code>Kernel.spawn</code>, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
 
 <% code("elixir") do %>
-def handle_in("shout", message, socket) do
-  spawn(__MODULE__, :save_message, [message])
-  broadcast! socket, "shout", message
+def handle_in("shout", payload, socket) do
+  spawn(Slackir.Conversations, :create_message, [payload])
+  broadcast! socket, "shout", payload
   {:noreply, socket}
-end
-
-def save_message(message) do
-  Slackir.Message.changeset(%Slackir.Message{}, message)
-  |> Slackir.Repo.insert
 end
 <% end %>
 <p>What this does is spawn an elixir process to do the save, outside of the request cycle. Since we don’t need to see the results of the save to broadcast the message, there’s no reason to wait for it.</p>
@@ -45,3 +54,4 @@ end
 <ul>
   <li><a href="/guides/retrieve_message_history.html" class="inline-link"> Retrieving a history of messages from the database</a></li>
 </ul>
+<br>
