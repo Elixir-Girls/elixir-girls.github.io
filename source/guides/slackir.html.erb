@@ -37,7 +37,7 @@ $ mix phx.server
 
 <p>If server doesn't start, probably you need to add <code>:plug_cowboy</code> dependency in <code>mix.exs</code> file.</p>
 
-<p>Add this <code>{:plug_cowboy, "~> 1.0"}</code> in the bottom list of dependencies. The list should look like that:</p>
+<p>Add this <code>{:plug_cowboy, "~> 1.0"}</code> in the bottom list of libraries. The list should look like that:</p>
 
 <% code("elixir") do %>
 defp deps do
@@ -55,7 +55,7 @@ defp deps do
 end
 <% end %>
 
-<p>In order to install newly added dependencie run</p>
+<p>In order to install newly added dependency run</p>
 
 <% code("bash") do %>
 $ mix deps.get
