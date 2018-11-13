@@ -126,10 +126,16 @@
                     <a href="/guides/slackir.html">Slackir App</a>
                 </li>
                 <li>
-                    <a href="/guides/channels.html">Channels</a>
+                    <a href="/guides/slackir.html">1. Setting up</a>
                 </li>
                 <li>
-                    <a href="/guides/persistence.html">Persistence</a>
+                    <a href="/guides/channels.html">2. Channels</a>
+                </li>
+                <li>
+                    <a href="/guides/persistence.html">3. Persistence (save)</a>
+                </li>
+                <li>
+                    <a href="/guides/retrieve_message_history.html">4. Persistence (fetch)</a>
                 </li>
                 <li>
                     <a href="/guides/version-control-git.html">Version Control (Git)</a>
@@ -149,33 +155,42 @@
 <p>So now we have a basic chat app but once our session is closed all of our messages are lost. If we were able to create, read, update and delete from a database we would be able to maintain a history of messages or have persistence across our application.</p>
 
 <h2>Creating our Database</h2>
-<p>First, we’ll create and run a migration. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke mix phoenix.gen.model from the terminal to generate our model, then run the migration:</p>
 
-<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phoenix.gen.model Message messages name:string message:string
-<span class="nv">$ </span>mix ecto.migrate
+<p>First, we’ll create a migration and some code to handle persistence. Migrations are pieces of code that create or change database columns. In Phoenix, we can invoke <code>mix phx.gen.context</code> from the terminal to generate a context with functions, schema and migration:</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix phx.gen.context Conversations Message messages name:string message:string
+</code></pre></div>
+<p>Explanation on that command:</p>
+<ul>
+  <li><b>Context: </b><code>Conversations</code> - The context is an Elixir module that serves as an boundary for the given
+resources like messages. A context often holds many related resources.</li>
+  <li><b>Schema: </b><code>Message</code> - The schema is responsible for mapping the database fields into an Elixir struct.</li>
+  <li><b>Schema table: </b><code>messages</code> - The schema table is just a schema plural name for table in database.</li>
+  <li><b>Fields </b><code>name:string</code> and <code>message:string</code>- The fields are columns in database table where <code>message</code> is a filed name and <code>string</code> is field type in <code>message:string</code>.</li>
+</ul>
+
+<p> More on DB types you can find <a href="https://hexdocs.pm/ecto/Ecto.Schema.html#module-primitive-types" class="inline-link" target="_blank">here</a>.
+
+<p>Then run the migration:</p>
+
+<div class="highlight"><pre class="highlight shell"><code><span class="nv">$ </span>mix ecto.migrate
 </code></pre></div>
 <h2>Creating our messages in the Database</h2>
-<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In web/channels/random_channel.ex, we can add a call to do it, so the handle_in method looks like this:</p>
+<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In <code>lib/slackir_web/channels/random_channel.ex</code>, we can add a call to do it, so the <code>handle_in</code> method looks like this:</p>
 
-<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
-  <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
-  <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
+<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+  <span class="no">Slackir</span><span class="o">.</span><span class="no">Conversations</span><span class="o">.</span><span class="n">create_message</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+  <span class="n">broadcast</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span>
   <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
 <span class="k">end</span>
 </code></pre></div>
 <h2>Refactor</h2>
-<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, Kernel.spawn, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
+<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, <code>Kernel.spawn</code>, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
 
-<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
-  <span class="n">spawn</span><span class="p">(</span><span class="bp">__MODULE__</span><span class="p">,</span> <span class="ss">:save_message</span><span class="p">,</span> <span class="p">[</span><span class="n">message</span><span class="p">])</span>
-  <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">message</span>
+<div class="highlight"><pre class="highlight elixir"><code><span class="k">def</span> <span class="n">handle_in</span><span class="p">(</span><span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">socket</span><span class="p">)</span> <span class="k">do</span>
+  <span class="n">spawn</span><span class="p">(</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Conversations</span><span class="p">,</span> <span class="ss">:create_message</span><span class="p">,</span> <span class="p">[</span><span class="n">payload</span><span class="p">])</span>
+  <span class="n">broadcast!</span> <span class="n">socket</span><span class="p">,</span> <span class="sd">"</span><span class="s2">shout"</span><span class="p">,</span> <span class="n">payload</span>
   <span class="p">{</span><span class="ss">:noreply</span><span class="p">,</span> <span class="n">socket</span><span class="p">}</span>
-<span class="k">end</span>
-
-<span class="k">def</span> <span class="n">save_message</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="k">do</span>
-  <span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="o">.</span><span class="n">changeset</span><span class="p">(%</span><span class="no">Slackir</span><span class="o">.</span><span class="no">Message</span><span class="p">{},</span> <span class="n">message</span><span class="p">)</span>
-  <span class="o">|&gt;</span> <span class="no">Slackir</span><span class="o">.</span><span class="no">Repo</span><span class="o">.</span><span class="n">insert</span>
 <span class="k">end</span>
 </code></pre></div><p>What this does is spawn an elixir process to do the save, outside of the request cycle. Since we don’t need to see the results of the save to broadcast the message, there’s no reason to wait for it.</p>
 
@@ -183,6 +198,7 @@
 <ul>
   <li><a href="/guides/retrieve_message_history.html" class="inline-link"> Retrieving a history of messages from the database</a></li>
 </ul>
+<br>
 
     </div>
     <!-- /#page-wrapper -->
