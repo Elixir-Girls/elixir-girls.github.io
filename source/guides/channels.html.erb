@@ -5,25 +5,25 @@ title: Elixir Girls Guides Channels
 <p>Now that you have your app up and running we can start adding functionality. The first thing out chat app needs to be able to do is communicate in Phoneix. This is done via a Channel which uses websockets. Websockets create connections similar to pipes or land line telephones being that they are always open or available. The other forms of communication that are typically used on the web are more like sending snail mail-- a message is sent, the message is received and then a reply is sent. An example of this would be HTTP.</p>
 
 <h2>Setting up Our Channels</h2>
-<p>Phoenix as of 1.2, includes a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command, so we will follow the Slack theme, and call it random. Look out for any actions that running the command asks you to complete.</p>
+<p>Phoenix includes a built-in mix task for channels that will create files and do some of the boilerplate work for you. We will need to pass a name into our command, so we will follow the Slack theme, and call it random. Look out for any actions that running the command asks you to complete.</p>
 
 <% code("bash") do %>
-$ mix phoenix.gen.channel random
+$ mix phx.gen.channel random
 <% end %>
 
-<p>In web/channels/user_socket.ex add the following below the `## Channels` comment.</p>
+<p>In <code>web/channels/user_socket.ex</code> add the following below the `## Channels` comment.</p>
 
 <% code("elixir") do %>
 ## Channels
-# channel "room:*", Slackir.RoomChannel
-channel "random:lobby", Slackir.RandomChannel # Add this line
+# channel "room:*", SlackirWeb.RoomChannel
+channel "random:lobby", SlackirWeb.RandomChannel # Add this line
 <% end %>
 
-<p>In our web/channels/random_channel.ex paste the following</p>
+<p>In our <code>web/channels/random_channel.ex</code> you should have the following content</p>
 
-<% code("elixir") do %>
-defmodule Slackir.RandomChannel do
-  use Slackir.Web, :channel
+<% code("elixir", :line_numbers => true) do %>
+defmodule SlackirWeb.RandomChannel do
+  use SlackirWeb, :channel
 
   def join("random:lobby", payload, socket) do
     if authorized?(payload) do
@@ -53,29 +53,29 @@ defmodule Slackir.RandomChannel do
 end
 <% end %>
 
-<p>Now that we have generated some code let's look at what it does. First the random_channel.ex is the channel equivalent of a controller in Phoenix, being that it handles websocket requests instead of http requests. On line 2 :channel is referring to the Phoenix channel method. It takes a parameter which is used as a namespace for the websocket connections. In this instance the name space is "random:lobby".</p>
+<p>Now that we have generated some code let's look at what it does. First the <code>random_channel.ex</code> is the channel equivalent of a controller in Phoenix, being that it handles websocket requests instead of http requests. On line <b>2</b> <code>:channel</code> is referring to the Phoenix channel method from <code>user_socket.ex</code> file. It takes a parameter which is used as a namespace for the websocket connections. In this instance the name space is <b>"random:lobby"</b>.</p>
 
-<p>The next argument Slackir.RandomChannel is made up of two parts. The first part Slackir is the name of the app. The second part RandomChannel is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
+<p>The next argument <code>Slackir.RandomChannel</code> is made up of two parts. The first part <code>Slackir</code> is the name of the app. The second part <code>RandomChannel</code> is the name of the module that handles the elixirgirls channel. In Phoenix, it’s conventional to namespace all your modules with your app name first as this prevents namespace errors.</p>
 
-<p>The file, user_channels.ex, is like the router.ex file, but for channels. The topic, for us it's elixirgirls, allows clients, also known as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request to the right controller, the topic directs the socket to the right module, in this case, Slackir.RandomChannel.</p>
+<p>The file, <code>user_socket.ex</code>, is like the <code>router.ex</code> file, but for channels. The topic, for us it's elixirgirls, allows clients, also known as web browsers, to subscribe to the channel. In the same way a path in a web request directs the request to the right controller, the topic directs the socket to the right module, in this case, <code>Slackir.RandomChannel</code>.</p>
 
-<p>Now, let’s look at the join method. def join ("random:lobby", payload, socket) do: takes three arguments. The first argument, the name of the channel, "random:lobby", makes it so that this method is only called when the client is joining the specific channel. The second argument, payload is the request from the user; it can contain auth credentials, a message or anything the user wants. Finally, it takes socket, which is the websocket connection. There’s a test, authorized?, which always returns true. Then, {:ok, socket} just returns a status and the websocket they are connecting to. join always returns {:ok, socket} to allow all connections to the channel.</p>
+<p>Now, let’s look at the join method at line <b>4</b>. <code>def join ("random:lobby", payload, socket) do</code>: takes three arguments. The first argument, the name of the channel, <b>"random:lobby"</b>, makes it so that this method is only called when the client is joining the specific channel. The second argument, <b>payload</b> is the request from the user; it can contain auth credentials, a message or anything the user wants. Finally, it takes <b>socket</b>, which is the websocket connection. There’s a test, <code>authorized?</code>, which always returns <i>true</i>. Then, <code>{:ok, socket}</code> just returns a status and the websocket they are connecting to. join always returns <code>{:ok, socket}</code> to allow all connections to the channel.</p>
 
-<p>Once a user joins a channel they can send messages to the channel and they’ll be received by one of the handle_in messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s the second that allows us to build our chat room with just a little front end work. When you send a message to the chat room, this method sends it back to you and to everyone else in the channel.</p>
+<p>Once a user joins a channel they can send messages to the channel and they’ll be received by one of the <code>handle_in</code> messages. The first one just returns the payload sent by the user back to them. The second one sends the payload to all the users subscribed to the channel. It’s the second that allows us to build our chat room with just a little front end work. When you send a message to the chat room, this method sends it back to you and to everyone else in the channel.</p>
 
-<p>To handle the connections on the Client-side we’ll start by adding jQuery to our web/templates/layouts/app.html.eex:</p>
+<p>To handle the connections on the Client-side we’ll start by adding jQuery to our <code>lib/slackir_web/templates/layout/app.html.eex</code>:</p>
 
 <% code("html") do %>
 <script src="//code.jquery.com/jquery-1.12.4.min.js"></script>
 <% end %>
 
-<p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your web/static/js/app.js and uncomment the last line:</p>
+<p>Phoenix comes with a simple javascript socket client, but it’s disabled by default. Go into your <code>assets/js/app.js</code> and uncomment the last line:</p>
 
 <% code("js") do %>
 import socket from "./socket"
 <% end %>
 
-<p>Then go into your web/static/js/socket.js and paste the following:</p>
+<p>Then go into your <code>assets/js/socket.js</code> and paste the following:</p>
 
 <% code("js") do %>
 socket.connect()
@@ -101,9 +101,9 @@ channel.join()
   .receive("error", resp => { console.log("Unable to join", resp) })
 <% end %>
 
-<p>socket.channel("random:lobby", {}) sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message text field. Whenever the user enters a message, it’s pushed on the channel and the text field is cleared. When there’s an incoming message on the channel, it’s appended to the div we previously created and scrolled to the bottom.</p>
+<p><code>socket.channel("random:lobby", {})</code> sends the join request to the server, and the server sends the message back to the client. Here, we listen for a keypress event on the message <i>text</i> field. Whenever the user enters a message, it’s pushed on the channel and the <i>text</i> field is cleared. When there’s an incoming message on the channel, it’s appended to the <i>div</i> we previously created and scrolled to the bottom.</p>
 
-<p>Next we will want to create the container for our messages: Open web/templates/page/index.html.eex, and replace its contents with:</p>
+<p>Next we will want to create the container for our messages: Open <code>lib/slackir_web/templates/page/index.html.eex</code>, and replace its contents with:</p>
 
 <% code("html") do %>
 <div id='message-list' class='row'>
@@ -118,7 +118,7 @@ channel.join()
   </div>
 </div>
 <% end %>
-<p>What we have done here is create an empty div that will list all the chat messages and added two text fields, one for the user’s name and one for the message. Now you will want to open web/static/css/app.css and paste this at the end:</p>
+<p>What we have done here is create an empty <i>div</i> that will list all the chat messages and added two <i>text</i> fields, one for the user’s name and one for the message. Now you will want to open <code>assets/css/app.css</code> and paste this at the end:</p>
 
 <% code("css") do %>
 #message-list {
@@ -129,3 +129,5 @@ channel.join()
   margin-bottom: 50px;
 }
 <% end %>
+
+<p>Now go to <a href="http://127.0.0.1:4000" target="blank" class="inline-link">http://127.0.0.1:4000</a> and see the results!</p><br>
