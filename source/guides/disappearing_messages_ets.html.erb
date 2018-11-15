@@ -57,7 +57,7 @@ end
 
 <p>In the next step we need to pass the value of added checkbox to a server through WebSockets. To achieve this lets edit  <code>assets/js/socket.js</code></p>
 
-<p>A new variable needs to be added that stores the disappear checkbox value <code>let disappear = $('#disappear');</code>. Then we need to update action which is responsible for sending a message:</p>
+<p>A new variable <code>let disappear</code> will store a value of the checkbox. Then we need to update action which is responsible for sending a message:</p>
 
 <% code("javascript") do %>
 channel.push('shout', { name: name.val(), message: message.val(), disappear: disappear.is(':checked') });
