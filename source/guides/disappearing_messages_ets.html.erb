@@ -103,7 +103,7 @@ export default socket
 
 <p>We can now modify <code>lib/slackir/web/channels/random_channel.ex</code> to handle new data.</p>
 
-<p>In order to handle it in an Elixir-like way, we need to change this function <code>def handle_in("shout", payload, socket) do</code> to pattern match when disappear param is false:</p>
+<p>In order to handle it with the Elixir-way, we need to change this function <code>def handle_in("shout", payload, socket) do</code> to pattern match when disappear param is false:</p>
 
 <% code("elixir") do %>
 def handle_in("shout", %{disappear: false} = payload, socket) do
