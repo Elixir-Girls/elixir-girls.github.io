@@ -1,0 +1,189 @@
+---
+title: Elixir Girls Guides Slackir App Disappearing messages - ETS
+---
+<h1>Disappearing messages - ETS</h1>
+<p>We are going to add a snapchat-like disappearing messages using OTP built-in Erlang Term Storage (ETS). ETS is a robust in-memory store for Elixir and Erlang objects that comes included. ETS is capable of storing large amounts of data and offers constant time data access. Tables in ETS are created and owned by individual processes. When an owner process terminates, its tables are destroyed. By default, ETS is limited to 1400 tables per node. If you come from a Ruby world you can treat ETS as an equivalent of Redis key-value store.</p>
+
+<p>First of all, we need to create ETS table on application startup. Add private init function to  <code>lib/slackir/application.ex</code></p>
+
+<% code("elixir") do %>
+defp init_ets() do
+  :ets.new(:disappearing_messages_table, [:set, :public, :named_table])
+end
+<% end %>
+
+<p>Then call this funtion in <code>start()</code> function callback. This function should look like that:</p>
+
+<% code("elixir") do %>
+def start(_type, _args) do
+  import Supervisor.Spec
+
+  # Define workers and child supervisors to be supervised
+  children = [
+    # Start the Ecto repository
+    supervisor(Slackir.Repo, []),
+    # Start the endpoint when the application starts
+    supervisor(SlackirWeb.Endpoint, []),
+    # Start your own worker by calling: Slackir.Worker.start_link(arg1, arg2, arg3)
+    # worker(Slackir.Worker, [arg1, arg2, arg3]),
+  ]
+
+  # See https://hexdocs.pm/elixir/Supervisor.html
+  # for other strategies and supported options
+  opts = [strategy: :one_for_one, name: Slackir.Supervisor]
+  init_ets()
+  Supervisor.start_link(children, opts)
+end
+<% end %>
+
+<p>Now we need to add information in message form about disappearing. Lets add a checkbox in <code>lib/slackir_web/templates/page/index.html.eex</code></p>
+
+<p>The content of this file should look like that:</p>
+
+<% code("html") do %>
+<div id='message-list' class='row'>
+</div>
+
+<div class='row form-group'>
+  <div class='col-md-3'>
+    <input type='text' id='name' class='form-control' placeholder='Name' />
+  </div>
+  <div class='col-md-9'>
+    <input type='text' id='message' class='form-control' placeholder='Message' />
+    <input type='checkbox' id='disappear' class='form-control'>Disappear
+  </div>
+</div>
+<% end %>
+
+<p>In the next step we need to pass the value of added checkbox to a server through WebSockets. To achieve this lets edit  <code>assets/js/socket.js</code></p>
+
+<p>A new variable <code>let disappear</code> will store a value of the checkbox. Then we need to update action which is responsible for sending a message:</p>
+
+<% code("javascript") do %>
+channel.push('shout', { name: name.val(), message: message.val(), disappear: disappear.is(':checked') });
+<% end %>
+
+<p>The whole file should look like that:</p>
+
+<% code("javascript") do %>
+socket.connect()
+let channel   = socket.channel("random:lobby", {});
+let list      = $('#message-list');
+let message   = $('#message');
+let name      = $('#name');
+let disappear = $('#disappear');
+
+message.on('keypress', event => {
+  if (event.keyCode == 13) {
+    channel.push('shout', { name: name.val(), message: message.val(), disappear: disappear.is(':checked') });
+    message.val('');
+  }
+});
+
+channel.on('shout', payload => {
+  list.append(`<b>${payload.name || 'Anonymous'}:</b> ${payload.message}<br>`);
+  list.prop({scrollTop: list.prop("scrollHeight")});
+});
+
+channel.join()
+  .receive("ok", resp => { console.log("Joined successfully", resp) })
+  .receive("error", resp => { console.log("Unable to join", resp) })
+
+channel.on('messages_history', messages => {
+  let messages_list = messages["messages"];
+
+  messages_list.forEach( function(msg) {
+    list.append(`<b>${msg["name"] || 'Anonymous'}:</b> ${msg["message"]}<br>`);
+    list.prop({scrollTop: list.prop("scrollHeight")});
+  });
+});
+
+export default socket
+<% end %>
+
+<p>We can now modify <code>lib/slackir/web/channels/random_channel.ex</code> to handle new data.</p>
+
+<p>In order to handle it with the Elixir-way, we need to change this function <code>def handle_in("shout", payload, socket) do</code> to pattern match when disappear param is false:</p>
+
+<% code("elixir") do %>
+def handle_in("shout", %{disappear: false} = payload, socket) do
+  spawn(Slackir.Conversations, :create_message, [payload])
+  broadcast socket, "shout", payload
+  {:noreply, socket}
+end
+<% end %>
+
+<p>Then we can add next version of this function which will handle <code>%{disappear: true}</code> case, but this time saving it in ETS table.</p>
+
+<% code("elixir") do %>
+def handle_in("shout", %{disappear: true} = payload, socket) do
+  spawn(:ets, :insert, [:disappearing_messages_table, {NaiveDateTime.utc_now(), payload["name"], payload["message"]}])
+  broadcast socket, "shout", payload
+  {:noreply, socket}
+end
+<% end %>
+
+<p>This line should be explained by a mentor <code>spawn(:ets, :insert, [:disappearing_messages_table, {NaiveDateTime.utc_now(), payload["name"], payload["message"]}])</code>. Basically, we are spawning a process which will insert our name and message into <code>disappearing_messages_table</code> in ETS along with a DateTime. Watch out for <code>NaiveDateTime.utc_now()</code>. This is added as a first element in a tuple because each key needs to be unique.</p>
+
+<p>Next step is to retrieve all this disappearing messages in <code>def handle_info(:after_join, socket) do</code> function accordingly:</p>
+
+<% code("elixir") do %>
+def handle_info(:after_join, socket) do
+  messages =
+    Slackir.Conversations.list_messages()
+    |> Enum.map(&(%{message: &1.message, name: &1.name, disappear: false, timestamp: &1.inserted_at}))
+  messages_ets =
+    :ets.match(:disappearing_messages_table, {:"$1", :"$2", :"$3"})
+    |> Enum.map(&(%{message: Enum.at(&1, 2), name: Enum.at(&1, 1), disappear: true, timestamp: Enum.at(&1, 0)}))
+
+  messages =
+    messages ++ messages_ets
+    |> Enum.sort(&(NaiveDateTime.compare(&1.timestamp, &2.timestamp) == :lt))
+
+  push socket, "messages_history", %{messages: messages}
+  {:noreply, socket}
+end
+<% end %>
+
+<p>In this block of code, we fetched the data from ETS table <code>:disappearing_messages_table</code> by using this line <code>:ets.match(:disappearing_messages_table, {:"$1", :"$2", :"$3"})</code> and then just mapped to corresponding structure. We updated also a message structure with <code>:disappear</code> key to distinguish both types of messages and also <code>:timestamp</code>. Afterward, we concatenate two lists of messages and sort them by timestamp (If necessary this operation can be explained in details by mentors).</p>
+
+<p>The last thing that we need to do is a visual side, just to have the difference between the two types of messages. Let's go again to <code>assets/js/socket.js</code>. We need to update two things.</p>
+
+<p>Firstly, let's change retrieving a <code>messages_history</code> and indicate temporary message with a red color font.</p>
+
+<% code("javascript") do %>
+channel.on('messages_history', messages => {
+  let messages_list = messages["messages"];
+
+  messages_list.forEach( function(msg) {
+    let line_message = "";
+    if (msg["disappear"]) {
+      line_message = `<b>${msg["name"] || 'Anonymous'}:</b> <font color="red">${msg["message"]}</font><br>`;
+    } else {
+      line_message = `<b>${msg["name"] || 'Anonymous'}:</b> ${msg["message"]}<br>`;
+    }
+    list.append(line_message);
+    list.prop({scrollTop: list.prop("scrollHeight")});
+  });
+});
+<% end %>
+
+<p>Secondly, the same change with handling <code>shout</code> message.</p>
+
+<% code("javascript") do %>
+channel.on('shout', payload => {
+  let line_message = "";
+  if (payload.disappear) {
+    line_message = `<b>${payload.name || 'Anonymous'}:</b> <font color="red">${payload.message}</font><br>`;
+  } else {
+    line_message = `<b>${payload.name || 'Anonymous'}:</b> ${payload.message}<br>`;
+  }
+  list.append(line_message);
+  list.prop({scrollTop: list.prop("scrollHeight")});
+});
+
+<% end %>
+
+<p>This was the final step. Now we can test if it works correctly. Run the app and send both types of messages. Then run the app in a new tab. Both types of messages should be fetched. Now when you rerun your app and refresh the browser you should see only permanent messages.</p>
+
+<p>In the next chapter, we will improve our snapchat-like messages with an expiration time to not have to rerun the app.</p><br>
