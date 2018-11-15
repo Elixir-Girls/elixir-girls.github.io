@@ -103,8 +103,8 @@
         <div class="sidebar-nav">
             <ul class="nav" id="side-menu nav">
                 <li>
-                    <a id="dropdown-menu" href="#">Installation</a>
-                    <ul class="nav nav-second-level">
+                    <a id="dropdown-menu" class="installation" href="#">Installation</a>
+                    <ul id="installation" class="nav nav-second-level">
                       <li>
                           <a href="/install-guides/mac.html">Mac</a>
                       </li>
@@ -123,19 +123,32 @@
                   <a href="/guides/elixir-beginners-guide.html">Beginner's Guide</a>
                 </li>
                 <li>
-                    <a href="/guides/slackir.html">Slackir App</a>
+                    <a id="dropdown-menu" class="app-basic" href="#">Slackir App (Basic)</a>
+                    <ul id="app-basic" class="nav nav-second-level">
+                        <li>
+                            <a href="/guides/slackir.html">1. Setting up</a>
+                        </li>
+                        <li>
+                            <a href="/guides/channels.html">2. Channels</a>
+                        </li>
+                        <li>
+                            <a href="/guides/persistence.html">3. Persistence (save)</a>
+                        </li>
+                        <li>
+                            <a href="/guides/retrieve_message_history.html">4. Persistence (fetch)</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
-                    <a href="/guides/slackir.html">1. Setting up</a>
-                </li>
-                <li>
-                    <a href="/guides/channels.html">2. Channels</a>
-                </li>
-                <li>
-                    <a href="/guides/persistence.html">3. Persistence (save)</a>
-                </li>
-                <li>
-                    <a href="/guides/retrieve_message_history.html">4. Persistence (fetch)</a>
+                    <a id="dropdown-menu" class="app-advanced" href="#">Slackir App (Advanced)</a>
+                    <ul id="app-advanced" class="nav nav-second-level">
+                    <li>
+                        <a href="/guides/disappearing_messages_ets.html">5. Disappearing messages - ETS</a>
+                    </li>
+                    <li>
+                        <a href="#">6. Expiring messages - GenServers (comming soon)</a>
+                    </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/guides/version-control-git.html">Version Control (Git)</a>

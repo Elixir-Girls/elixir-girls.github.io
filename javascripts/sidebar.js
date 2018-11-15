@@ -1,5 +1,11 @@
 $(document).ready(function(){
-  $("a#dropdown-menu").click(function(){
-      $("ul.nav-second-level").toggle();
+  $("a.installation").click(function(){
+      $("ul#installation").toggle();
+  });
+  $("a.app-basic").click(function(){
+      $("ul#app-basic").toggle();
+  });
+  $("a.app-advanced").click(function(){
+      $("ul#app-advanced").toggle();
   });
 });
