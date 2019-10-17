@@ -30,7 +30,7 @@ $ mix ecto.migrate
 <% end %>
 
 <h2>Creating our messages in the Database</h2>
-<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In <code>lib/slackir_web/channels/random_channel.ex</code>, we can add a call to do it, so the <code>handle_in</code> method looks like this:</p>
+<p>Next, we need to save the messages as they come in. If you are not familiar with programming this is create in the CRUD app methodology. In <code>lib/slackir_web/channels/random_channel.ex</code>, we can add a call to do it, so the <code>handle_in</code> function looks like this:</p>
 
 <% code("elixir") do %>
 def handle_in("shout", payload, socket) do
@@ -41,7 +41,7 @@ end
 <% end %>
 
 <h2>Refactor</h2>
-<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, <code>Kernel.spawn</code>, which takes a module, a method, and arguments to pass to the method. So we’ll update our handler, and add a method:</p>
+<p>The above code is alright, but if we want to scale our application we will start to have a problem as all the saves to the database will slow down the request cycle and keep us from handling the traffic efficiently. Elixir has some built in tools for dealing with exactly this situation. Specifically, <code>Kernel.spawn</code>, which takes a module, a function, and arguments to pass to the function. So we’ll update our handler, and add a function:</p>
 
 <% code("elixir") do %>
 def handle_in("shout", payload, socket) do
